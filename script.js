@@ -14,13 +14,23 @@ const CONFIG = {
   // Recapiti mostrati nella sezione Contatti e nel footer
   telefono:  '+39 333 123 4567',
   email:     'info@mcadesign.it',
-  indirizzo: 'Via Esempio 1, 70121 Bari (BA), Italia',
+  indirizzo: 'Via xxxx',
+
+  // Punto mostrato dalla mappa Google nella sezione Contatti.
+  // Lascia '' e viene usato l'indirizzo qui sopra; scrivi qui l'indirizzo
+  // esatto (o "Nome azienda, città") per centrarla con precisione.
+  mappa: 'Bari, Italia',
+
   orari:     'Lun – Ven  9:00 – 13:00 / 15:00 – 18:00',
   piva:      'P.IVA 00000000000',
 
-  // Social dell'azienda — lascia '' e l'icona sparisce dal sito
-  instagram: '',
-  facebook:  '',
+  // Social dell'azienda.
+  // ⚠️ SEGNAPOSTO: questi due portano alla home di Instagram/Facebook,
+  //    NON al profilo di MCA design. Sostituiscili con gli indirizzi veri
+  //    (es. 'https://www.instagram.com/mcadesign/').
+  //    Se lasci '' l'icona corrispondente sparisce dal sito.
+  instagram: 'https://www.instagram.com/',
+  facebook:  'https://www.facebook.com/',
 
   // Credito in fondo alla pagina ("Web by Matteo Marino")
   devInstagram: 'https://www.instagram.com/_matteomarino/'
@@ -31,25 +41,25 @@ const CONFIG = {
    cat: 'progetti' | 'bagni' | 'pavimenti' | 'design'
    ========================================================================== */
 const GALLERIA = [
-  { id: 'g01', cat: 'progetti',  alt: 'Scalinata in marmo del Grand Hotel delle Nazioni',      cap: 'Grand Hotel delle Nazioni — Bari' },
-  { id: 'g02', cat: 'progetti',  alt: 'Salone con volte in pietra e pavimento in Trani',        cap: 'Relais Hist — Salone' },
-  { id: 'g03', cat: 'progetti',  alt: 'Camera con pavimento in pietra di Trani patinata',       cap: 'Relais Hist San Pietro sul Mar Piccolo — Taranto' },
-  { id: 'g04', cat: 'progetti',  alt: 'Sala colazione con pavimento in pietra naturale',        cap: 'Sala colazione — Relais Hist' },
-  { id: 'g05', cat: 'progetti',  alt: 'Lastra di marmo retroilluminata nella spa',              cap: 'Culti Day Spa — Milano' },
-  { id: 'g06', cat: 'progetti',  alt: 'Parete in marmo scuro retroilluminata',                  cap: 'Culti Day Spa — Milano' },
-  { id: 'g07', cat: 'progetti',  alt: 'Scala e volume in pietra nella hall della spa',          cap: 'Culti Day Spa — Milano' },
-  { id: 'g08', cat: 'progetti',  alt: 'Bordo piscina rivestito in pietra naturale',             cap: 'Bordo piscina in pietra' },
-  { id: 'g09', cat: 'bagni',     alt: 'Bagno con mobile e lavabo in travertino noce',           cap: 'Bagno in Travertino Noce' },
-  { id: 'g10', cat: 'bagni',     alt: 'Bagno rivestito in marmo grafite con lavabi bianchi',    cap: 'Bagno in Grafite' },
-  { id: 'g11', cat: 'bagni',     alt: 'Bagno rivestito in pietra patinata chiara',              cap: 'Bagno in Trani patinato' },
-  { id: 'g12', cat: 'bagni',     alt: 'Dettaglio del lavabo incassato in travertino',           cap: 'Dettaglio lavabo in pietra' },
-  { id: 'g13', cat: 'pavimenti', alt: 'Pavimento in Trani patinato in camera d’albergo',        cap: 'Pavimento in Trani patinato' },
-  { id: 'g14', cat: 'pavimenti', alt: 'Pavimento in pietra di Trani burattata',                 cap: 'Trani burattato' },
-  { id: 'g15', cat: 'pavimenti', alt: 'Dettaglio della finitura patinata del pavimento',        cap: 'Dettaglio finitura patinata' },
-  { id: 'g16', cat: 'design',    alt: 'Vasi scolpiti in pietra naturale',                       cap: 'Vasi in pietra naturale' },
-  { id: 'g17', cat: 'design',    alt: 'Lavabo monolitico scolpito in pietra',                   cap: 'Lavabo monolitico' },
-  { id: 'g18', cat: 'design',    alt: 'Parete sagomata a onde in pietra',                       cap: 'Parete sagomata' },
-  { id: 'g19', cat: 'design',    alt: 'Oggettistica e complementi in pietra',                   cap: 'Oggettistica in pietra' }
+  { id: 'g01', cat: 'progetti',  alt: 'Scalinata in marmo del Grand Hotel delle Nazioni',      cap: 'Grand Hotel delle Nazioni — Bari' , w:900, h:630 },
+  { id: 'g02', cat: 'progetti',  alt: 'Salone con volte in pietra e pavimento in Trani',        cap: 'Relais Hist — Salone' , w:900, h:598 },
+  { id: 'g03', cat: 'progetti',  alt: 'Camera con pavimento in pietra di Trani patinata',       cap: 'Relais Hist San Pietro sul Mar Piccolo — Taranto' , w:900, h:603 },
+  { id: 'g04', cat: 'progetti',  alt: 'Sala colazione con pavimento in pietra naturale',        cap: 'Sala colazione — Relais Hist' , w:900, h:598 },
+  { id: 'g05', cat: 'progetti',  alt: 'Lastra di marmo retroilluminata nella spa',              cap: 'Culti Day Spa — Milano' , w:871, h:863 },
+  { id: 'g06', cat: 'progetti',  alt: 'Parete in marmo scuro retroilluminata',                  cap: 'Culti Day Spa — Milano' , w:900, h:901 },
+  { id: 'g07', cat: 'progetti',  alt: 'Scala e volume in pietra nella hall della spa',          cap: 'Culti Day Spa — Milano' , w:867, h:859 },
+  { id: 'g08', cat: 'progetti',  alt: 'Bordo piscina rivestito in pietra naturale',             cap: 'Bordo piscina in pietra' , w:900, h:672 },
+  { id: 'g09', cat: 'bagni',     alt: 'Bagno con mobile e lavabo in travertino noce',           cap: 'Bagno in Travertino Noce' , w:900, h:884 },
+  { id: 'g10', cat: 'bagni',     alt: 'Bagno rivestito in marmo grafite con lavabi bianchi',    cap: 'Bagno in Grafite' , w:900, h:598 },
+  { id: 'g11', cat: 'bagni',     alt: 'Bagno rivestito in pietra patinata chiara',              cap: 'Bagno in Trani patinato' , w:900, h:598 },
+  { id: 'g12', cat: 'bagni',     alt: 'Dettaglio del lavabo incassato in travertino',           cap: 'Dettaglio lavabo in pietra' , w:900, h:849 },
+  { id: 'g13', cat: 'pavimenti', alt: 'Pavimento in Trani patinato in camera d’albergo',        cap: 'Pavimento in Trani patinato' , w:900, h:598 },
+  { id: 'g14', cat: 'pavimenti', alt: 'Pavimento in pietra di Trani burattata',                 cap: 'Trani burattato' , w:850, h:638 },
+  { id: 'g15', cat: 'pavimenti', alt: 'Dettaglio della finitura patinata del pavimento',        cap: 'Dettaglio finitura patinata' , w:900, h:598 },
+  { id: 'g16', cat: 'design',    alt: 'Vasi scolpiti in pietra naturale',                       cap: 'Vasi in pietra naturale' , w:900, h:675 },
+  { id: 'g17', cat: 'design',    alt: 'Lavabo monolitico scolpito in pietra',                   cap: 'Lavabo monolitico' , w:900, h:675 },
+  { id: 'g18', cat: 'design',    alt: 'Parete sagomata a onde in pietra',                       cap: 'Parete sagomata' , w:900, h:457 },
+  { id: 'g19', cat: 'design',    alt: 'Oggettistica e complementi in pietra',                   cap: 'Oggettistica in pietra' , w:900, h:598 }
 ];
 
 /* ========================================================================== */
@@ -94,10 +104,50 @@ const GALLERIA = [
     if (year) year.textContent = new Date().getFullYear();
   }
 
+  /* ---------- 1a. Seconda striscia social, sopra il footer ----------
+     Viene clonata dalla prima invece di essere riscritta nell'HTML:
+     così le icone restano identiche e c'è un solo punto da modificare. */
+  function duplicaBandaSocial() {
+    const banda = $('.social-band');
+    const footer = $('.site-footer');
+    if (!banda || !footer) return;
+
+    const copia = banda.cloneNode(true);
+    copia.classList.add('social-band--pre-footer');
+
+    // va sopra la banda con la foto, se c'è; altrimenti attaccata al footer
+    ($('.closing-band') || footer).before(copia);
+  }
+
+  /* ---------- 1b. Mappa Google ----------
+     L'iframe viene creato qui invece che nell'HTML: così il punto mostrato
+     segue il CONFIG e non c'è un indirizzo scritto a mano in due posti. */
+  function initMap() {
+    const box = $('#contact-map');
+    if (!box) return;
+
+    const luogo = (CONFIG.mappa || CONFIG.indirizzo || '').trim();
+    const q = encodeURIComponent(luogo);
+
+    $$('[data-cfg="maps-link"]').forEach(el => {
+      el.href = `https://www.google.com/maps/search/?api=1&query=${q}`;
+    });
+
+    if (!luogo) { box.remove(); return; }
+
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.google.com/maps?q=${q}&hl=it&z=14&output=embed`;
+    iframe.title = `Mappa: dove siamo — ${luogo}`;
+    iframe.loading = 'lazy';
+    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+    iframe.allowFullscreen = true;
+    box.prepend(iframe);
+  }
+
   /* ---------- 2. Header: sfondo allo scroll + link attivo ---------- */
   function initHeader() {
     const header = $('#header');
-    const waFloat = $('.wa-float');
+    const floats = $$('.wa-float, .tel-float');
     const links = $$('.nav > a[href^="#"]');
     const sections = links
       .map(a => $(a.getAttribute('href')))
@@ -106,7 +156,8 @@ const GALLERIA = [
     const onScroll = () => {
       const y = window.scrollY;
       header.classList.toggle('scrolled', y > 40);
-      if (waFloat) waFloat.classList.toggle('show', y > window.innerHeight * 0.6);
+      const oltreHero = y > window.innerHeight * 0.6;
+      floats.forEach(el => el.classList.toggle('show', oltreHero));
 
       let current = null;
       sections.forEach(sec => {
@@ -171,7 +222,8 @@ const GALLERIA = [
     grid.innerHTML = GALLERIA.map((img, i) => `
       <button class="g-item" data-cat="${img.cat}" data-index="${i}"
               aria-label="Apri: ${img.cap}">
-        <img src="assets/img/${img.id}.jpg" alt="${img.alt}" loading="lazy">
+        <img src="assets/img/${img.id}.jpg" alt="${img.alt}" loading="lazy"
+             width="${img.w}" height="${img.h}">
         <span class="g-cap">${img.cap}</span>
       </button>`).join('');
 
@@ -298,7 +350,9 @@ const GALLERIA = [
   }
 
   /* ---------- Avvio ---------- */
-  applyConfig();
+  applyConfig();          // prima: così la copia nasce con i link già risolti
+  duplicaBandaSocial();
+  initMap();
   initHeader();
   initBurger();
   initReveal();

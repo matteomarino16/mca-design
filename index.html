@@ -83,7 +83,7 @@
 
       <div class="about-text">
         <p class="label reveal"><span class="label-num">01</span> Chi siamo</p>
-        <h2 class="reveal">Una materia antica,<br>un'idea contemporanea di progetto.</h2>
+        <h2 class="reveal">Una materia antica, <br>un'idea contemporanea di progetto.</h2>
 
         <p class="lead reveal">
           MCA design nasce dall'incontro tra la cultura della pietra e il disegno contemporaneo.
@@ -153,6 +153,30 @@
           <h3>Posa e assistenza in cantiere</h3>
           <p>Squadre specializzate, gestione delle forniture e supporto fino alla consegna del lavoro.</p>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOCIAL ============ -->
+  <section class="social-band" aria-label="Seguici sui social">
+    <div class="shell social-inner">
+      <a class="social-brand" href="#top" aria-label="MCA design s.r.l. — torna all'inizio">
+        <img src="assets/img/logo.png" alt="MCA design s.r.l." width="432" height="162" loading="lazy">
+      </a>
+
+      <div class="social-right">
+        <span class="social-label">Seguici</span>
+        <div class="social-icons">
+          <a data-cfg="ig-link" href="#" aria-label="Instagram di MCA design">
+            <svg class="ico-outline" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a data-cfg="fb-link" href="#" aria-label="Facebook di MCA design">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5h2.5V5.2H14c-2.2 0-3.6 1.5-3.6 3.7v1.6H8v3.3h2.4V21h3.3v-7.2h2.4l.4-3.3h-2.8V9.2c0-.5.2-.7.6-.7Z"/></svg>
+          </a>
+          <a href="#" data-wa="Salve, vorrei ricevere informazioni." aria-label="Scrivici su WhatsApp">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.12c-.25.69-1.44 1.32-1.99 1.37-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.1-4.88-4.29-.14-.19-1.17-1.55-1.17-2.96s.74-2.1 1-2.39c.26-.29.57-.36.76-.36l.54.01c.17 0 .41-.07.64.49.24.57.8 1.98.87 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.3.37-.42.5-.14.14-.29.29-.12.57.16.29.73 1.2 1.56 1.94 1.07.95 1.98 1.25 2.26 1.39.28.14.45.12.61-.07.17-.19.71-.83.9-1.11.19-.29.38-.24.64-.14.26.09 1.67.79 1.95.93.29.14.48.21.55.33.07.12.07.69-.18 1.38Z"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -288,6 +312,7 @@
         </p>
       </header>
 
+      <!-- Info + mappa -->
       <div class="contact">
         <div class="contact-info reveal">
           <a class="btn btn-wa" href="#" data-wa="Salve, vorrei parlare di un progetto.">
@@ -298,19 +323,19 @@
           <dl class="contact-list">
             <div>
               <dt>Telefono</dt>
-              <dd><a data-cfg="tel-link" href="#"><span data-cfg="tel">—</span></a></dd>
+              <dd><a data-cfg="tel-link" href="#"><span data-cfg="tel">&mdash;</span></a></dd>
             </div>
             <div>
               <dt>Email</dt>
-              <dd><a data-cfg="mail-link" href="#"><span data-cfg="mail">—</span></a></dd>
+              <dd><a data-cfg="mail-link" href="#"><span data-cfg="mail">&mdash;</span></a></dd>
             </div>
             <div>
               <dt>Sede</dt>
-              <dd><span data-cfg="address">—</span></dd>
+              <dd><span data-cfg="address">&mdash;</span></dd>
             </div>
             <div>
               <dt>Orari</dt>
-              <dd><span data-cfg="hours">—</span></dd>
+              <dd><span data-cfg="hours">&mdash;</span></dd>
             </div>
           </dl>
 
@@ -324,18 +349,40 @@
           </div>
         </div>
 
-        <form class="contact-form reveal" id="contact-form" novalidate>
-          <div class="field">
-            <label for="f-nome">Nome e cognome</label>
-            <input id="f-nome" name="nome" type="text" autocomplete="name" required>
-          </div>
+        <figure class="contact-map reveal" id="contact-map">
+          <!-- l'iframe viene inserito da script.js, a partire da CONFIG.mappa -->
+          <figcaption>
+            <span data-cfg="address">&mdash;</span>
+            <a data-cfg="maps-link" href="#" target="_blank" rel="noopener noreferrer">
+              Apri in Google Maps
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+          </figcaption>
+        </figure>
+      </div>
+
+      <!-- Form, centrato sotto la mappa -->
+      <div class="form-wrap reveal">
+        <form class="contact-form" id="contact-form" novalidate>
+          <header class="form-head">
+            <h3>Richiedi un preventivo</h3>
+            <p>Compila i campi: il messaggio si apre gi&agrave; scritto su WhatsApp.</p>
+          </header>
+
           <div class="field-row">
             <div class="field">
-              <label for="f-tel">Telefono</label>
-              <input id="f-tel" name="telefono" type="tel" autocomplete="tel">
+              <label for="f-nome">Nome e cognome <span class="req" aria-hidden="true">*</span></label>
+              <input id="f-nome" name="nome" type="text" autocomplete="name" placeholder="Mario Rossi" required>
             </div>
             <div class="field">
-              <label for="f-tipo">Interesse</label>
+              <label for="f-tel">Telefono</label>
+              <input id="f-tel" name="telefono" type="tel" autocomplete="tel" placeholder="333 123 4567">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-tipo">Di cosa hai bisogno</label>
+            <div class="select-wrap">
               <select id="f-tipo" name="tipo">
                 <option>Marmi</option>
                 <option>Graniti</option>
@@ -349,16 +396,25 @@
               </select>
             </div>
           </div>
+
           <div class="field">
-            <label for="f-msg">Il tuo progetto</label>
-            <textarea id="f-msg" name="messaggio" rows="5" placeholder="Materiale, metratura, tempi…" required></textarea>
+            <label for="f-msg">Il tuo progetto <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="f-msg" name="messaggio" rows="5"
+                      placeholder="Materiale, metratura, tempi di consegna&hellip;" required></textarea>
           </div>
 
-          <button class="btn btn-dark" type="submit">Invia su WhatsApp</button>
+          <p class="form-error" id="form-error" role="alert" hidden>
+            Compila nome e messaggio per continuare.
+          </p>
+
+          <button class="btn btn-wa form-submit" type="submit">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.12c-.25.69-1.44 1.32-1.99 1.37-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.1-4.88-4.29-.14-.19-1.17-1.55-1.17-2.96s.74-2.1 1-2.39c.26-.29.57-.36.76-.36l.54.01c.17 0 .41-.07.64.49.24.57.8 1.98.87 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.3.37-.42.5-.14.14-.29.29-.12.57.16.29.73 1.2 1.56 1.94 1.07.95 1.98 1.25 2.26 1.39.28.14.45.12.61-.07.17-.19.71-.83.9-1.11.19-.29.38-.24.64-.14.26.09 1.67.79 1.95.93.29.14.48.21.55.33.07.12.07.69-.18 1.38Z"/></svg>
+            Invia su WhatsApp
+          </button>
+
           <p class="form-alt">
             Preferisci la mail? <a data-cfg="mail-link" href="#">Scrivici qui</a>
           </p>
-          <p class="form-error" id="form-error" role="alert" hidden>Compila nome e messaggio per continuare.</p>
         </form>
       </div>
     </div>
@@ -366,13 +422,31 @@
 
 </main>
 
+<!-- ============ BANDA CON FOTO (fra la striscia social e il footer) ============ -->
+<section class="closing-band" aria-label="MCA design s.r.l.">
+  <div class="closing-media">
+    <img src="assets/img/band.jpg" alt="Parete in pietra naturale sagomata a onde" width="2200" height="1118" loading="lazy">
+  </div>
+
+  <div class="shell closing-inner">
+    <p class="closing-eyebrow">MCA design s.r.l.</p>
+    <p class="closing-claim">
+      La pietra non si sceglie a catalogo.<br>
+      Si sceglie in cava, blocco per blocco.
+    </p>
+    <a class="closing-link" href="#galleria">
+      Guarda i progetti
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
 <!-- ============ FOOTER ============ -->
 <footer class="site-footer">
-  <div class="shell footer-inner">
-    <div class="footer-brand">
+  <div class="shell footer-top">
+    <a class="footer-logo" href="#top" aria-label="MCA design s.r.l. &mdash; torna all'inizio">
       <img src="assets/img/logo.png" alt="MCA design s.r.l." width="432" height="162" loading="lazy">
-      <p>Marmi, graniti e pietre naturali.<br>Progetti su misura dal blocco al dettaglio.</p>
-    </div>
+    </a>
 
     <nav class="footer-nav" aria-label="Navigazione footer">
       <a href="#chi-siamo">Chi siamo</a>
@@ -381,22 +455,21 @@
       <a href="#galleria">Galleria</a>
       <a href="#contatti">Contatti</a>
     </nav>
-
-    <div class="footer-contact">
-      <a data-cfg="tel-link" href="#"><span data-cfg="tel">—</span></a>
-      <a data-cfg="mail-link" href="#"><span data-cfg="mail">—</span></a>
-      <a href="#" data-wa="Salve, vorrei ricevere informazioni.">WhatsApp</a>
-    </div>
   </div>
 
   <div class="shell footer-bottom">
-    <p>© <span id="year">2026</span> MCA design s.r.l. — Tutti i diritti riservati. <span data-cfg="piva"></span></p>
+    <p>&copy; <span id="year">2026</span> MCA design s.r.l. &middot; <span data-cfg="piva"></span></p>
     <p class="credit">
       Web by
       <a data-cfg="dev-link" href="#" target="_blank" rel="noopener noreferrer">Matteo Marino</a>
     </p>
   </div>
 </footer>
+
+<!-- ============ PULSANTI FLOTTANTI ============ -->
+<a class="tel-float" data-cfg="tel-link" href="#" aria-label="Chiamaci">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C11.1 21 3 12.9 3 3c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .7-.2 1l-2.2 2.2Z"/></svg>
+</a>
 
 <!-- ============ WHATSAPP FLOTTANTE ============ -->
 <a class="wa-float" href="#" data-wa="Salve, vorrei ricevere informazioni." aria-label="Scrivici su WhatsApp">

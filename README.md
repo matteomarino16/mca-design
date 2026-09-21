@@ -26,7 +26,8 @@ const CONFIG = {
   whatsapp: '393331234567',   // internazionale, senza + né spazi
   telefono:  '+39 333 123 4567',
   email:     'info@mcadesign.it',
-  indirizzo: 'Via Esempio 1, 70121 Bari (BA), Italia',
+  indirizzo: 'Via xxxx',      // segnaposto, da sostituire
+  mappa:     'Bari, Italia',  // punto mostrato dalla mappa Google
   orari:     'Lun – Ven  9:00 – 13:00 / 15:00 – 18:00',
   piva:      'P.IVA 00000000000',
   instagram: '',            // vuoto = l'icona non viene mostrata
@@ -69,6 +70,10 @@ Poi apri `http://localhost:4173`.
 
 - Il form contatti non richiede un server: compone il messaggio e lo apre
   su WhatsApp. In alternativa c'è il link `mailto:`.
+- La mappa è un `<iframe>` di Google Maps costruito da `script.js` a partire da
+  `CONFIG.mappa` (o, se vuoto, da `CONFIG.indirizzo`): nessuna chiave API,
+  nessun indirizzo da scrivere due volte. Essendo un contenuto di Google,
+  prima della pubblicazione valutate se serve un banner cookie.
 - Le immagini in `assets/img/` sono state rigenerate da `galleria/` con
   ridimensionamento e compressione (≈4,7 MB in totale invece di ~500 MB).
 - Layout responsive con tre livelli: desktop, tablet (≤900 px) e mobile
