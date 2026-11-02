@@ -3,38 +3,39 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MCA design s.r.l. — Marmi, graniti e pietre naturali</title>
-<meta name="description" content="MCA design s.r.l. — selezione, lavorazione e posa di marmi, graniti, travertini e pietre naturali. Pavimenti, rivestimenti, bagni e arredo su misura per hotel, residenze e spazi contract.">
+<title>MCA design s.r.l. &mdash; Marmi, graniti e pietre naturali</title>
+<meta name="description" content="MCA design s.r.l. — selezione, lavorazione e posa di marmi, graniti, travertini e pietre naturali. Scale, pavimenti, top cucina e bagno, piatti doccia su misura.">
 <meta name="theme-color" content="#fbfaf8">
 <link rel="icon" type="image/png" href="assets/img/favicon.png">
 <link rel="apple-touch-icon" href="assets/img/favicon.png">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="MCA design s.r.l. — Marmi, graniti e pietre naturali">
-<meta property="og:description" content="Selezione, lavorazione e posa di marmi, graniti e pietre naturali. Progetti su misura per hotel, residenze e spazi contract.">
-<meta property="og:image" content="assets/img/hero.jpg">
+<meta property="og:title" content="MCA design s.r.l. &mdash; Marmi, graniti e pietre naturali">
+<meta property="og:description" content="Selezione, lavorazione e posa di marmi, graniti e pietre naturali. Progetti su misura.">
 <meta property="og:locale" content="it_IT">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=7">
 </head>
-<body>
+<body class="hero-scuro">
 
 <a class="skip-link" href="#chi-siamo">Vai al contenuto</a>
 
 <!-- ============ HEADER ============ -->
 <header class="site-header" id="header">
   <div class="shell header-inner">
-    <a href="#top" class="brand" aria-label="MCA design s.r.l. — torna all'inizio">
+    <a href="#top" class="brand" id="brand" aria-label="MCA design s.r.l. &mdash; torna all'inizio">
       <img src="assets/img/logo.png" alt="MCA design s.r.l." width="432" height="162">
     </a>
 
     <nav class="nav" id="nav" aria-label="Navigazione principale">
       <a href="#chi-siamo">Chi siamo</a>
       <a href="#servizi">Servizi</a>
+      <a href="#materiali">Materiali</a>
       <a href="#prodotti">Prodotti</a>
+      <a href="#promozioni">Promozioni</a>
       <a href="#galleria">Galleria</a>
       <a href="#contatti">Contatti</a>
       <a class="nav-wa" data-wa="Salve, vorrei ricevere informazioni." href="#">
@@ -53,21 +54,30 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="hero">
-    <div class="hero-media">
-      <img src="assets/img/hero.jpg" alt="Scalinata in marmo del Grand Hotel delle Nazioni a Bari" fetchpriority="high">
+    <!-- fondo: marmo Forest Green, scuro e venato.
+         Quando CONFIG.heroImage è impostato, la foto lo sostituisce. -->
+    <div class="hero-texture" id="hero-texture" aria-hidden="true">
+      <img src="assets/img/hero-stone.jpg" alt="" width="2200" height="1222" fetchpriority="high">
     </div>
-    <div class="shell hero-inner">
-      <p class="hero-eyebrow">MCA design s.r.l.</p>
-      <h1 class="hero-title">La bellezza della pietra,<br><em>su misura.</em></h1>
-      <p class="hero-sub">
+
+    <div class="hero-media" id="hero-media"><!-- la foto viene inserita da script.js (CONFIG.heroImage) --></div>
+
+    <div class="shell hero-inner" id="hero-inner">
+      <div class="hero-stage" id="hero-stage">
+        <img class="hero-logo" id="hero-logo" src="assets/img/logo.png"
+             alt="MCA design s.r.l." width="432" height="162" fetchpriority="high">
+      </div>
+
+      <p class="hero-sub" id="hero-sub">
         Marmi, graniti, travertini e pietre naturali selezionati, lavorati e posati
         per hotel, residenze private e spazi contract.
       </p>
-      <div class="hero-cta">
-        <a class="btn btn-light" href="#prodotti">Scopri i prodotti</a>
-        <a class="btn btn-ghost" href="#contatti">Contattaci</a>
+      <div class="hero-cta" id="hero-cta">
+        <a class="btn btn-solid" href="#prodotti">Scopri i prodotti</a>
+        <a class="btn btn-outline" href="#contatti">Contattaci</a>
       </div>
     </div>
+
     <a class="hero-scroll" href="#chi-siamo" aria-label="Scorri alla sezione Chi siamo">
       <span class="hero-scroll-line" aria-hidden="true"></span>
       Scorri
@@ -92,8 +102,8 @@
         </p>
         <p class="reveal">
           Lavoriamo al fianco di architetti, progettisti e imprese per tradurre un'idea in superfici,
-          volumi e finiture reali. Ogni commessa è seguita su misura, con lavorazioni artigianali
-          e tecnologie di taglio a controllo numerico che garantiscono precisione e ripetibilità.
+          volumi e finiture reali. Ogni commessa &egrave; seguita su misura, con lavorazioni artigianali
+          e tecnologie di taglio a controllo numerico che garantiscono precisione e ripetibilit&agrave;.
         </p>
         <p class="reveal">
           Dagli hotel agli spazi wellness, dalle residenze private agli spazi pubblici,
@@ -115,9 +125,9 @@
     <div class="shell">
       <header class="section-head">
         <p class="label reveal"><span class="label-num">02</span> I nostri servizi</p>
-        <h2 class="reveal">Dal materiale grezzo<br>alla superficie finita.</h2>
+        <h2 class="reveal">Dal sopralluogo<br>alla superficie finita.</h2>
         <p class="section-intro reveal">
-          Seguiamo l'intero processo, così il progetto resta coerente dalla prima proposta
+          Seguiamo l'intero processo, cos&igrave; il progetto resta coerente dalla prima misura
           fino all'ultimo pezzo posato.
         </p>
       </header>
@@ -125,33 +135,33 @@
       <div class="services">
         <article class="service reveal">
           <span class="service-num">01</span>
-          <h3>Consulenza e selezione materiali</h3>
-          <p>Ti aiutiamo a scegliere marmo, granito o pietra in base a estetica, destinazione d'uso e budget, con campionature reali.</p>
+          <h3>Sopralluogo e rilievo</h3>
+          <p>Veniamo in cantiere, misuriamo e valutiamo supporti, pendenze e vincoli prima di qualsiasi preventivo.</p>
         </article>
         <article class="service reveal">
           <span class="service-num">02</span>
           <h3>Progettazione e disegno esecutivo</h3>
-          <p>Rilievo, sviluppo dei disegni di taglio e schemi di posa, in dialogo costante con architetti e imprese.</p>
+          <p>Sviluppiamo disegni di taglio e schemi di posa in dialogo con architetti, progettisti e imprese.</p>
         </article>
         <article class="service reveal">
           <span class="service-num">03</span>
-          <h3>Lavorazione e finiture</h3>
-          <p>Lucidato, patinato, spazzolato, bocciardato, sabbiato, rigato: ogni finitura cambia il carattere della pietra.</p>
+          <h3>Taglio e lavorazione</h3>
+          <p>Controllo numerico per i tagli complessi, mano dell'artigiano per sagome, bordi e raccordi.</p>
         </article>
         <article class="service reveal">
           <span class="service-num">04</span>
-          <h3>Pavimenti e rivestimenti</h3>
-          <p>Superfici continue per interni ed esterni, con formati su misura, scale, soglie e pezzi speciali.</p>
+          <h3>Finiture su misura</h3>
+          <p>Lucidato, patinato, spazzolato, bocciardato, sabbiato, rigato: ogni finitura cambia il carattere della pietra.</p>
         </article>
         <article class="service reveal">
           <span class="service-num">05</span>
-          <h3>Bagni e arredo in pietra</h3>
-          <p>Lavabi monolitici, top, vasche, piani cucina e complementi realizzati su disegno.</p>
+          <h3>Posa in opera</h3>
+          <p>Squadre specializzate, gestione delle forniture e assistenza fino alla consegna del lavoro.</p>
         </article>
         <article class="service reveal">
           <span class="service-num">06</span>
-          <h3>Posa e assistenza in cantiere</h3>
-          <p>Squadre specializzate, gestione delle forniture e supporto fino alla consegna del lavoro.</p>
+          <h3>Manutenzione e restauro</h3>
+          <p>Lucidatura, trattamenti protettivi e recupero di superfici in pietra esistenti.</p>
         </article>
       </div>
     </div>
@@ -160,125 +170,232 @@
   <!-- ============ SOCIAL ============ -->
   <section class="social-band" aria-label="Seguici sui social">
     <div class="shell social-inner">
-      <a class="social-brand" href="#top" aria-label="MCA design s.r.l. — torna all'inizio">
+      <a class="social-brand" href="#top" aria-label="MCA design s.r.l. &mdash; torna all'inizio">
         <img src="assets/img/logo.png" alt="MCA design s.r.l." width="432" height="162" loading="lazy">
       </a>
 
       <div class="social-right">
         <span class="social-label">Seguici</span>
         <div class="social-icons">
-          <a data-cfg="ig-link" href="#" aria-label="Instagram di MCA design">
-            <svg class="ico-outline" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg>
-          </a>
-          <a data-cfg="fb-link" href="#" aria-label="Facebook di MCA design">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5h2.5V5.2H14c-2.2 0-3.6 1.5-3.6 3.7v1.6H8v3.3h2.4V21h3.3v-7.2h2.4l.4-3.3h-2.8V9.2c0-.5.2-.7.6-.7Z"/></svg>
-          </a>
-          <a href="#" data-wa="Salve, vorrei ricevere informazioni." aria-label="Scrivici su WhatsApp">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.12c-.25.69-1.44 1.32-1.99 1.37-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.1-4.88-4.29-.14-.19-1.17-1.55-1.17-2.96s.74-2.1 1-2.39c.26-.29.57-.36.76-.36l.54.01c.17 0 .41-.07.64.49.24.57.8 1.98.87 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.3.37-.42.5-.14.14-.29.29-.12.57.16.29.73 1.2 1.56 1.94 1.07.95 1.98 1.25 2.26 1.39.28.14.45.12.61-.07.17-.19.71-.83.9-1.11.19-.29.38-.24.64-.14.26.09 1.67.79 1.95.93.29.14.48.21.55.33.07.12.07.69-.18 1.38Z"/></svg>
-          </a>
+          <a data-cfg="ig-link" href="#" aria-label="Instagram di MCA design"><svg class="ico-outline" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+          <a data-cfg="fb-link" href="#" aria-label="Facebook di MCA design"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5h2.5V5.2H14c-2.2 0-3.6 1.5-3.6 3.7v1.6H8v3.3h2.4V21h3.3v-7.2h2.4l.4-3.3h-2.8V9.2c0-.5.2-.7.6-.7Z"/></svg></a>
+          <a href="#" data-wa="Salve, vorrei ricevere informazioni." aria-label="Scrivici su WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.12c-.25.69-1.44 1.32-1.99 1.37-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.1-4.88-4.29-.14-.19-1.17-1.55-1.17-2.96s.74-2.1 1-2.39c.26-.29.57-.36.76-.36l.54.01c.17 0 .41-.07.64.49.24.57.8 1.98.87 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.3.37-.42.5-.14.14-.29.29-.12.57.16.29.73 1.2 1.56 1.94 1.07.95 1.98 1.25 2.26 1.39.28.14.45.12.61-.07.17-.19.71-.83.9-1.11.19-.29.38-.24.64-.14.26.09 1.67.79 1.95.93.29.14.48.21.55.33.07.12.07.69-.18 1.38Z"/></svg></a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ PRODOTTI ============ -->
-  <section class="section" id="prodotti">
+  <!-- ============ MATERIALI ============ -->
+  <section class="section" id="materiali">
     <div class="shell">
       <header class="section-head">
-        <p class="label reveal"><span class="label-num">03</span> I nostri prodotti</p>
-        <h2 class="reveal">Scegli la categoria,<br>ne parliamo su WhatsApp.</h2>
-        <p class="section-intro reveal">
-          Tocca una categoria: si apre WhatsApp con il messaggio già pronto e ti rispondiamo
-          con disponibilità, finiture e preventivo.
-        </p>
+        <p class="label reveal"><span class="label-num">03</span> Materiali</p>
+        <h2 class="reveal">Marmi, graniti<br>e pietre naturali.</h2>
+        <p class="section-intro reveal">Tocca un materiale: si apre WhatsApp con il messaggio gi&agrave; pronto e ti rispondiamo con disponibilit&agrave;, finiture e preventivo.</p>
       </header>
 
       <div class="products">
         <a class="product reveal" href="#" data-wa="Salve, vorrei informazioni sui MARMI.">
-          <span class="product-img"><img src="assets/img/p-marmi.jpg" alt="Lastra di marmo Calacatta Carrara" loading="lazy"></span>
+          <span class="product-img"><img src="assets/img/mat-marmi.jpg" alt="Lastra di marmo Calacatta Carrara" loading="lazy"></span>
           <span class="product-body">
             <span class="product-name">Marmi</span>
             <span class="product-desc">Carrara, Calacatta, Statuario, Botticino, Emperador e oltre cento varietà.</span>
             <span class="product-cta"><span class="cta-full">Richiedi informazioni</span><span class="cta-short">Richiedi info</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
           </span>
         </a>
-
         <a class="product reveal" href="#" data-wa="Salve, vorrei informazioni sui GRANITI.">
-          <span class="product-img"><img src="assets/img/p-graniti.jpg" alt="Lastra di granito Labrador River Blue" loading="lazy"></span>
+          <span class="product-img"><img src="assets/img/mat-graniti.jpg" alt="Lastra di granito Labrador River Blue" loading="lazy"></span>
           <span class="product-body">
             <span class="product-name">Graniti</span>
             <span class="product-desc">Materiali resistenti per piani di lavoro, pavimenti ad alto traffico ed esterni.</span>
             <span class="product-cta"><span class="cta-full">Richiedi informazioni</span><span class="cta-short">Richiedi info</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
           </span>
         </a>
-
         <a class="product reveal" href="#" data-wa="Salve, vorrei informazioni sui TRAVERTINI.">
-          <span class="product-img"><img src="assets/img/p-travertini.jpg" alt="Lastra di travertino classico" loading="lazy"></span>
+          <span class="product-img"><img src="assets/img/mat-travertini.jpg" alt="Lastra di travertino classico" loading="lazy"></span>
           <span class="product-body">
             <span class="product-name">Travertini</span>
             <span class="product-desc">Classico, Navona, Noce, Silver: calore e texture per superfici naturali.</span>
             <span class="product-cta"><span class="cta-full">Richiedi informazioni</span><span class="cta-short">Richiedi info</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
           </span>
         </a>
-
         <a class="product reveal" href="#" data-wa="Salve, vorrei informazioni sulle QUARZITI.">
-          <span class="product-img"><img src="assets/img/p-quarziti.jpg" alt="Lastra di quarzite Legno Dorato" loading="lazy"></span>
+          <span class="product-img"><img src="assets/img/mat-quarziti.jpg" alt="Lastra di quarzite Legno Dorato" loading="lazy"></span>
           <span class="product-body">
             <span class="product-name">Quarziti</span>
             <span class="product-desc">Venature materiche e grande durezza, ideali per superfici d'effetto.</span>
             <span class="product-cta"><span class="cta-full">Richiedi informazioni</span><span class="cta-short">Richiedi info</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
           </span>
         </a>
-
         <a class="product reveal" href="#" data-wa="Salve, vorrei informazioni sulle PIETRE NATURALI.">
-          <span class="product-img"><img src="assets/img/p-pietre.jpg" alt="Pietra di Trani patinata" loading="lazy"></span>
+          <span class="product-img"><img src="assets/img/mat-pietre.jpg" alt="Pietra di Trani patinata" loading="lazy"></span>
           <span class="product-body">
             <span class="product-name">Pietre naturali</span>
             <span class="product-desc">Trani, Apricena, Pietra Serena, Lavica: la tradizione mediterranea.</span>
             <span class="product-cta"><span class="cta-full">Richiedi informazioni</span><span class="cta-short">Richiedi info</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
           </span>
         </a>
+      </div>
 
-        <a class="product reveal" href="#" data-wa="Salve, vorrei informazioni su PAVIMENTI E RIVESTIMENTI.">
-          <span class="product-img"><img src="assets/img/p-pavimenti.jpg" alt="Pavimento in pietra di Trani burattata" loading="lazy"></span>
+      <p class="products-note reveal">Cerchi un materiale che non trovi qui? <a href="#" data-wa="Salve, cerco un materiale particolare. Potete aiutarmi?">Scrivici, lo troviamo per te.</a></p>
+
+      <!-- Marchi trattati -->
+      <div class="partners reveal">
+        <p class="partners-label">Marchi trattati</p>
+        <!-- Indirizzi presi dai link della home ufficiale Cosentino Italia -->
+        <ul class="partners-logos">
+          <li>
+            <a href="https://www.cosentino.com/it-it/" target="_blank" rel="noopener noreferrer"
+               aria-label="Cosentino &mdash; sito ufficiale (si apre in una nuova scheda)">
+              <img class="p-cosentino" src="assets/img/partner-cosentino.png" alt="Cosentino" width="2002" height="220" loading="lazy">
+            </a>
+          </li>
+          <li>
+            <a href="https://www.cosentino.com/it-it/dekton/" target="_blank" rel="noopener noreferrer"
+               aria-label="Dekton &mdash; sito ufficiale (si apre in una nuova scheda)">
+              <img src="assets/img/partner-dekton.png" alt="Dekton" width="953" height="220" loading="lazy">
+            </a>
+          </li>
+          <li>
+            <a href="https://www.cosentino.com/it-it/silestone/" target="_blank" rel="noopener noreferrer"
+               aria-label="Silestone &mdash; sito ufficiale (si apre in una nuova scheda)">
+              <img src="assets/img/partner-silestone.png" alt="Silestone" width="844" height="220" loading="lazy">
+            </a>
+          </li>
+          <li>
+            <a href="https://www.cosentino.com/it-it/sensa/" target="_blank" rel="noopener noreferrer"
+               aria-label="Sensa by Cosentino &mdash; sito ufficiale (si apre in una nuova scheda)">
+              <img src="assets/img/partner-sensa.png" alt="Sensa by Cosentino" width="778" height="220" loading="lazy">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ I NOSTRI PRODOTTI ============ -->
+  <section class="section section-alt" id="prodotti">
+    <div class="shell">
+      <header class="section-head">
+        <p class="label reveal"><span class="label-num">04</span> I nostri prodotti</p>
+        <h2 class="reveal">Quello che realizziamo<br>con la pietra.</h2>
+        <p class="section-intro reveal">Scale, pavimenti, top e piatti doccia: ogni pezzo &egrave; tagliato e finito su misura. Scegli la categoria e ne parliamo su WhatsApp.</p>
+      </header>
+
+      <div class="products">
+        <a class="product reveal" href="#" data-wa="Salve, vorrei informazioni sulle SCALE.">
+          <span class="product-img"><img src="assets/img/pr-scale.jpg" alt="Scalinata in marmo con gradini a sbalzo" loading="lazy"></span>
           <span class="product-body">
-            <span class="product-name">Pavimenti e rivestimenti</span>
-            <span class="product-desc">Formati su misura, opus incertum, scale, soglie e pezzi speciali.</span>
+            <span class="product-name">Scale</span>
+            <span class="product-desc">Gradini, alzate, pianerottoli e rivestimenti su misura, anche a sbalzo.</span>
             <span class="product-cta"><span class="cta-full">Richiedi informazioni</span><span class="cta-short">Richiedi info</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
           </span>
         </a>
-
-        <a class="product reveal" href="#" data-wa="Salve, vorrei informazioni su BAGNI E LAVABI in pietra.">
-          <span class="product-img"><img src="assets/img/p-bagni.jpg" alt="Bagno rivestito in pietra patinata" loading="lazy"></span>
+        <a class="product reveal" href="#" data-wa="Salve, vorrei informazioni sui PAVIMENTI ESTERNI.">
+          <span class="product-img"><img src="assets/img/pr-pav-esterni.jpg" alt="Pavimentazione esterna in pietra a bordo piscina" loading="lazy"></span>
           <span class="product-body">
-            <span class="product-name">Bagni e lavabi</span>
-            <span class="product-desc">Lavabi monolitici, top, vasche e rivestimenti coordinati.</span>
+            <span class="product-name">Pavimenti esterni</span>
+            <span class="product-desc">Bordi piscina, terrazze e camminamenti con finiture antiscivolo.</span>
             <span class="product-cta"><span class="cta-full">Richiedi informazioni</span><span class="cta-short">Richiedi info</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
           </span>
         </a>
-
-        <a class="product reveal" href="#" data-wa="Salve, vorrei informazioni su DESIGN E OGGETTISTICA in pietra.">
-          <span class="product-img"><img src="assets/img/p-design.jpg" alt="Oggetto di design scolpito in pietra naturale" loading="lazy"></span>
+        <a class="product reveal" href="#" data-wa="Salve, vorrei informazioni sui PAVIMENTI INTERNI.">
+          <span class="product-img"><img src="assets/img/pr-pav-interni.jpg" alt="Pavimento interno in pietra di Trani patinata" loading="lazy"></span>
           <span class="product-body">
-            <span class="product-name">Design e oggettistica</span>
-            <span class="product-desc">Complementi, vasi e pezzi unici scolpiti su disegno.</span>
+            <span class="product-name">Pavimenti interni</span>
+            <span class="product-desc">Formati su misura, opus incertum, soglie e pezzi speciali.</span>
+            <span class="product-cta"><span class="cta-full">Richiedi informazioni</span><span class="cta-short">Richiedi info</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+          </span>
+        </a>
+        <a class="product reveal" href="#" data-wa="Salve, vorrei informazioni sui TOP CUCINA.">
+          <span class="product-img"><img src="assets/img/pr-top-cucina.jpg" alt="Piano cucina in marmo Calacatta" loading="lazy"></span>
+          <span class="product-body">
+            <span class="product-name">Top cucina</span>
+            <span class="product-desc">Piani di lavoro, penisole e alzatine in marmo, granito o quarzite.</span>
+            <span class="product-cta"><span class="cta-full">Richiedi informazioni</span><span class="cta-short">Richiedi info</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+          </span>
+        </a>
+        <a class="product reveal" href="#" data-wa="Salve, vorrei informazioni sui TOP BAGNO.">
+          <span class="product-img"><img src="assets/img/pr-top-bagno.jpg" alt="Top bagno in travertino con lavabo incassato" loading="lazy"></span>
+          <span class="product-body">
+            <span class="product-name">Top bagno</span>
+            <span class="product-desc">Top con lavabo incassato, integrato o d'appoggio, su disegno.</span>
+            <span class="product-cta"><span class="cta-full">Richiedi informazioni</span><span class="cta-short">Richiedi info</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+          </span>
+        </a>
+        <a class="product reveal" href="#" data-wa="Salve, vorrei informazioni sui PIATTI DOCCIA.">
+          <span class="product-img"><img src="assets/img/pr-piatti-doccia.jpg" alt="Doccia rivestita in marmo grafite" loading="lazy"></span>
+          <span class="product-body">
+            <span class="product-name">Piatti doccia</span>
+            <span class="product-desc">Piatti doccia ricavati dal pieno, filo pavimento, con pendenza su misura.</span>
             <span class="product-cta"><span class="cta-full">Richiedi informazioni</span><span class="cta-short">Richiedi info</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
           </span>
         </a>
       </div>
+    </div>
+  </section>
 
-      <p class="products-note reveal">
-        Cerchi un materiale che non trovi qui?
-        <a href="#" data-wa="Salve, cerco un materiale particolare. Potete aiutarmi?">Scrivici, lo troviamo per te.</a>
-      </p>
+  <!-- ============ COMPLEMENTI DI DESIGN ============ -->
+  <section class="section" id="complementi">
+    <div class="shell">
+      <header class="section-head">
+        <p class="label reveal"><span class="label-num">05</span> Complementi di design</p>
+        <h2 class="reveal">Pezzi unici,<br>scolpiti dal pieno.</h2>
+        <p class="section-intro reveal">Oggetti e complementi ricavati da un solo blocco, su disegno nostro o vostro.</p>
+      </header>
+
+      <div class="products">
+        <a class="product reveal" href="#" data-wa="Salve, vorrei informazioni su VASI E FIORIERE in pietra.">
+          <span class="product-img"><img src="assets/img/cd-vasi.jpg" alt="Vasi scolpiti in pietra naturale" loading="lazy"></span>
+          <span class="product-body">
+            <span class="product-name">Vasi e fioriere</span>
+            <span class="product-desc">Pezzi scolpiti dal pieno, per interni ed esterni.</span>
+            <span class="product-cta"><span class="cta-full">Richiedi informazioni</span><span class="cta-short">Richiedi info</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+          </span>
+        </a>
+        <a class="product reveal" href="#" data-wa="Salve, vorrei informazioni sui LAVABI MONOLITICI.">
+          <span class="product-img"><img src="assets/img/cd-lavabi.jpg" alt="Lavabo monolitico scolpito in pietra" loading="lazy"></span>
+          <span class="product-body">
+            <span class="product-name">Lavabi monolitici</span>
+            <span class="product-desc">Bacili e lavabi ricavati da un unico blocco, su disegno.</span>
+            <span class="product-cta"><span class="cta-full">Richiedi informazioni</span><span class="cta-short">Richiedi info</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+          </span>
+        </a>
+        <a class="product reveal" href="#" data-wa="Salve, vorrei informazioni sull'OGGETTISTICA in pietra.">
+          <span class="product-img"><img src="assets/img/cd-oggettistica.jpg" alt="Oggettistica e accessori in pietra" loading="lazy"></span>
+          <span class="product-body">
+            <span class="product-name">Oggettistica</span>
+            <span class="product-desc">Vassoi, portasapone, complementi e accessori coordinati.</span>
+            <span class="product-cta"><span class="cta-full">Richiedi informazioni</span><span class="cta-short">Richiedi info</span> <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROMOZIONI ============ -->
+  <section class="section section-alt" id="promozioni">
+    <div class="shell">
+      <header class="section-head section-head--row">
+        <div>
+          <p class="label reveal"><span class="label-num">06</span> Promozioni</p>
+          <h2 class="reveal">Offerte del momento.</h2>
+          <p class="section-intro reveal">
+            Lotti in pronta consegna e lavorazioni a prezzo bloccato, finch&eacute; dura la disponibilit&agrave;.
+          </p>
+        </div>
+        <a class="btn btn-solid reveal promo-all" href="promozioni.html">Vedi tutte le promozioni</a>
+      </header>
+
+      <div class="promos" id="promos-home"><!-- generata da script.js --></div>
     </div>
   </section>
 
   <!-- ============ GALLERIA ============ -->
-  <section class="section section-alt" id="galleria">
+  <section class="section" id="galleria">
     <div class="shell">
       <header class="section-head">
-        <p class="label reveal"><span class="label-num">04</span> Galleria</p>
+        <p class="label reveal"><span class="label-num">07</span> Galleria</p>
         <h2 class="reveal">Progetti realizzati.</h2>
         <p class="section-intro reveal">
           Hotel, spa, residenze e dettagli d'autore: una selezione dei lavori
@@ -294,32 +411,24 @@
         <button class="filter" type="button" data-filter="design" aria-pressed="false">Design</button>
       </div>
 
-      <div class="gallery" id="gallery">
-        <!-- generata da assets/js/main.js -->
-      </div>
+      <div class="gallery" id="gallery"><!-- generata da script.js --></div>
     </div>
   </section>
 
   <!-- ============ CONTATTI ============ -->
-  <section class="section" id="contatti">
+  <section class="section section-alt" id="contatti">
     <div class="shell">
-      <header class="section-head">
-        <p class="label reveal"><span class="label-num">05</span> Contatti</p>
-        <h2 class="reveal">Parliamo del tuo progetto.</h2>
+      <header class="section-head section-head--center">
+        <p class="label reveal"><span class="label-num">08</span> Contattaci</p>
+        <h2 class="reveal">Contattaci.</h2>
         <p class="section-intro reveal">
-          Raccontaci cosa hai in mente: materiale, metratura, tempi. Ti rispondiamo
-          con una proposta e un preventivo su misura.
+          Telefono, email o WhatsApp: rispondiamo noi, non un centralino.
+          Dicci materiale, metratura e tempi e ti torniamo con un preventivo.
         </p>
       </header>
 
-      <!-- Info + mappa -->
       <div class="contact">
         <div class="contact-info reveal">
-          <a class="btn btn-wa" href="#" data-wa="Salve, vorrei parlare di un progetto.">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.12c-.25.69-1.44 1.32-1.99 1.37-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.1-4.88-4.29-.14-.19-1.17-1.55-1.17-2.96s.74-2.1 1-2.39c.26-.29.57-.36.76-.36l.54.01c.17 0 .41-.07.64.49.24.57.8 1.98.87 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.3.37-.42.5-.14.14-.29.29-.12.57.16.29.73 1.2 1.56 1.94 1.07.95 1.98 1.25 2.26 1.39.28.14.45.12.61-.07.17-.19.71-.83.9-1.11.19-.29.38-.24.64-.14.26.09 1.67.79 1.95.93.29.14.48.21.55.33.07.12.07.69-.18 1.38Z"/></svg>
-            Scrivici su WhatsApp
-          </a>
-
           <dl class="contact-list">
             <div>
               <dt>Telefono</dt>
@@ -330,12 +439,12 @@
               <dd><a data-cfg="mail-link" href="#"><span data-cfg="mail">&mdash;</span></a></dd>
             </div>
             <div>
-              <dt>Sede</dt>
-              <dd><span data-cfg="address">&mdash;</span></dd>
+              <dt>WhatsApp</dt>
+              <dd><a href="#" data-wa="Salve, vorrei ricevere informazioni."><span data-cfg="tel">&mdash;</span></a></dd>
             </div>
             <div>
-              <dt>Orari</dt>
-              <dd><span data-cfg="hours">&mdash;</span></dd>
+              <dt>Deposito materiali</dt>
+              <dd><span data-cfg="address">&mdash;</span></dd>
             </div>
           </dl>
 
@@ -350,7 +459,7 @@
         </div>
 
         <figure class="contact-map reveal" id="contact-map">
-          <!-- l'iframe viene inserito da script.js, a partire da CONFIG.mappa -->
+          <!-- mappa disattivata: CONFIG.mappa &egrave; vuoto, script.js rimuove questo blocco -->
           <figcaption>
             <span data-cfg="address">&mdash;</span>
             <a data-cfg="maps-link" href="#" target="_blank" rel="noopener noreferrer">
@@ -361,11 +470,10 @@
         </figure>
       </div>
 
-      <!-- Form, centrato sotto la mappa -->
       <div class="form-wrap reveal">
         <form class="contact-form" id="contact-form" novalidate>
           <header class="form-head">
-            <h3>Richiedi un preventivo</h3>
+            <h3>Scrivici un messaggio</h3>
             <p>Compila i campi: il messaggio si apre gi&agrave; scritto su WhatsApp.</p>
           </header>
 
@@ -384,15 +492,26 @@
             <label for="f-tipo">Di cosa hai bisogno</label>
             <div class="select-wrap">
               <select id="f-tipo" name="tipo">
-                <option>Marmi</option>
-                <option>Graniti</option>
-                <option>Travertini</option>
-                <option>Quarziti</option>
-                <option>Pietre naturali</option>
-                <option>Pavimenti e rivestimenti</option>
-                <option>Bagni e lavabi</option>
-                <option>Design e oggettistica</option>
-                <option>Altro</option>
+                <optgroup label="Prodotti">
+                  <option>Scale</option>
+                  <option>Pavimenti esterni</option>
+                  <option>Pavimenti interni</option>
+                  <option>Top cucina</option>
+                  <option>Top bagno</option>
+                  <option>Piatti doccia</option>
+                </optgroup>
+                <optgroup label="Materiali">
+                  <option>Marmi</option>
+                  <option>Graniti</option>
+                  <option>Travertini</option>
+                  <option>Quarziti</option>
+                  <option>Pietre naturali</option>
+                </optgroup>
+                <optgroup label="Altro">
+                  <option>Complementi di design</option>
+                  <option>Promozioni</option>
+                  <option>Altro</option>
+                </optgroup>
               </select>
             </div>
           </div>
@@ -422,25 +541,6 @@
 
 </main>
 
-<!-- ============ BANDA CON FOTO (fra la striscia social e il footer) ============ -->
-<section class="closing-band" aria-label="MCA design s.r.l.">
-  <div class="closing-media">
-    <img src="assets/img/band.jpg" alt="Parete in pietra naturale sagomata a onde" width="2200" height="1118" loading="lazy">
-  </div>
-
-  <div class="shell closing-inner">
-    <p class="closing-eyebrow">MCA design s.r.l.</p>
-    <p class="closing-claim">
-      La pietra non si sceglie a catalogo.<br>
-      Si sceglie in cava, blocco per blocco.
-    </p>
-    <a class="closing-link" href="#galleria">
-      Guarda i progetti
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
-    </a>
-  </div>
-</section>
-
 <!-- ============ FOOTER ============ -->
 <footer class="site-footer">
   <div class="shell footer-top">
@@ -451,7 +551,9 @@
     <nav class="footer-nav" aria-label="Navigazione footer">
       <a href="#chi-siamo">Chi siamo</a>
       <a href="#servizi">Servizi</a>
+      <a href="#materiali">Materiali</a>
       <a href="#prodotti">Prodotti</a>
+      <a href="promozioni.html">Promozioni</a>
       <a href="#galleria">Galleria</a>
       <a href="#contatti">Contatti</a>
     </nav>
@@ -471,7 +573,6 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C11.1 21 3 12.9 3 3c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .7-.2 1l-2.2 2.2Z"/></svg>
 </a>
 
-<!-- ============ WHATSAPP FLOTTANTE ============ -->
 <a class="wa-float" href="#" data-wa="Salve, vorrei ricevere informazioni." aria-label="Scrivici su WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.12c-.25.69-1.44 1.32-1.99 1.37-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.1-4.88-4.29-.14-.19-1.17-1.55-1.17-2.96s.74-2.1 1-2.39c.26-.29.57-.36.76-.36l.54.01c.17 0 .41-.07.64.49.24.57.8 1.98.87 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.3.37-.42.5-.14.14-.29.29-.12.57.16.29.73 1.2 1.56 1.94 1.07.95 1.98 1.25 2.26 1.39.28.14.45.12.61-.07.17-.19.71-.83.9-1.11.19-.29.38-.24.64-.14.26.09 1.67.79 1.95.93.29.14.48.21.55.33.07.12.07.69-.18 1.38Z"/></svg>
 </a>
@@ -487,6 +588,6 @@
   </figure>
 </div>
 
-<script src="script.js"></script>
+<script src="script.js?v=7"></script>
 </body>
 </html>

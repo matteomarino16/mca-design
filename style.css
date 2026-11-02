@@ -75,11 +75,17 @@ p{ margin:0 0 1.1em; }
   height:var(--header-h);
   transition:height .4s var(--ease);
 }
+.brand{ flex:0 0 auto; }     /* il logo non si lascia schiacciare dal menu */
 .brand img{
-  height:34px; width:auto;
-  filter:invert(1) brightness(2);
+  height:48px; width:auto; max-width:none;
   transition:filter .4s var(--ease), height .4s var(--ease);
 }
+/* Con la foto nell'hero l'header parte in bianco; senza foto resta scuro. */
+.hero-scuro .brand img{ filter:invert(1) brightness(2); }
+.hero-scuro .site-header.scrolled .brand img{ filter:none; }
+
+/* usata solo per misurare il punto d'arrivo del logo, senza animazioni di mezzo */
+.site-header.senza-transizione, .site-header.senza-transizione *{ transition:none !important; }
 
 .site-header.scrolled{
   background:rgba(251,250,248,.92);
@@ -88,23 +94,25 @@ p{ margin:0 0 1.1em; }
   border-bottom-color:var(--line);
 }
 .site-header.scrolled .header-inner{ height:68px; }
-.site-header.scrolled .brand img{ filter:none; height:28px; }
+.site-header.scrolled .brand img{ height:40px; }
 
 .nav{ display:flex; align-items:center; gap:clamp(16px,2vw,32px); }
 .nav > a{
   font-family:var(--ff-display);
   font-size:14px; font-weight:400; letter-spacing:.09em; text-transform:uppercase;
-  text-decoration:none; color:#fff;
+  text-decoration:none; color:var(--ink-2);
   position:relative; padding:6px 0;
   transition:color .35s var(--ease), opacity .35s var(--ease);
 }
+.hero-scuro .nav > a{ color:#fff; }
 .nav > a::after{
   content:''; position:absolute; left:0; bottom:0; height:1px; width:0; background:currentColor;
   transition:width .35s var(--ease);
 }
 .nav > a:hover::after, .nav > a.active::after{ width:100%; }
-.site-header.scrolled .nav > a{ color:var(--ink-2); }
-.site-header.scrolled .nav > a:hover{ color:var(--ink); }
+.nav > a:hover{ color:var(--ink); }
+.hero-scuro .site-header.scrolled .nav > a{ color:var(--ink-2); }
+.hero-scuro .site-header.scrolled .nav > a:hover{ color:var(--ink); }
 
 .nav-wa{
   display:inline-flex; align-items:center; gap:8px;
@@ -124,10 +132,12 @@ p{ margin:0 0 1.1em; }
   position:relative; z-index:2;
 }
 .burger span{
-  display:block; height:1px; width:24px; margin:6px auto; background:#fff;
+  display:block; height:1px; width:24px; margin:6px auto; background:var(--ink);
   transition:transform .35s var(--ease), opacity .25s var(--ease), background .35s var(--ease);
 }
-.site-header.scrolled .burger span, .nav-open .burger span{ background:var(--ink); }
+.hero-scuro .burger span{ background:#fff; }
+.hero-scuro .site-header.scrolled .burger span,
+.nav-open .burger span{ background:var(--ink); }
 .nav-open .burger span:first-child{ transform:translateY(3.5px) rotate(45deg); }
 .nav-open .burger span:last-child{ transform:translateY(-3.5px) rotate(-45deg); }
 
@@ -139,8 +149,28 @@ p{ margin:0 0 1.1em; }
   min-height:100svh;
   display:flex; align-items:center;
   overflow:hidden;
-  color:#fff;
+  color:var(--ink);
+  background:
+    radial-gradient(110% 80% at 50% 28%, #ffffff 0%, var(--bg) 46%, var(--bg-alt) 100%);
 }
+.hero-scuro .hero{ color:#fff; background:var(--ink); }
+/* Fondo materico: la pietra c'è davvero, ma sotto un velo di luce
+   che tiene leggibile il logo nero al centro. */
+.hero-texture{ position:absolute; inset:0; overflow:hidden; }
+.hero-texture img{
+  width:100%; height:100%; object-fit:cover; object-position:center;
+  transform:scale(1.06);            /* margine per il parallasse: niente bordi scoperti */
+  will-change:transform;
+}
+.hero-texture::after{
+  content:''; position:absolute; inset:0;
+  background:
+    radial-gradient(62% 56% at 50% 42%,
+      rgba(10,9,7,.30) 0%, rgba(10,9,7,.52) 55%, rgba(10,9,7,.74) 100%),
+    linear-gradient(180deg, rgba(10,9,7,.42) 0%, rgba(10,9,7,0) 28%, rgba(10,9,7,.55) 100%);
+}
+.hero-scuro.ha-foto .hero-texture{ display:none; }
+
 .hero-media{ position:absolute; inset:0; }
 .hero-media::after{
   content:''; position:absolute; inset:0;
@@ -154,37 +184,65 @@ p{ margin:0 0 1.1em; }
 }
 @keyframes kenburns{ from{ transform:scale(1.12); } to{ transform:scale(1); } }
 
-.hero-inner{ position:relative; z-index:1; padding-block:calc(var(--header-h) + 40px) 120px; }
-.hero-eyebrow{
-  font-family:var(--ff-display); font-size:13px; letter-spacing:.34em; text-transform:uppercase;
-  margin:0 0 26px; opacity:.85;
-  display:flex; align-items:center; gap:16px;
+.hero-inner{
+  position:relative; z-index:1; text-align:center;
+  padding-block:calc(var(--header-h) + 40px) 120px;
+  perspective:1200px;              /* la scena 3d vive qui dentro */
 }
-.hero-eyebrow::after{ content:''; height:1px; width:64px; background:currentColor; opacity:.6; }
-.hero-title{
-  font-size:clamp(44px,8.2vw,110px);
-  font-weight:200; letter-spacing:-.02em; margin:0 0 28px;
+
+/* Il palco porta l'inclinazione (perno al centro),
+   il logo porta il volo verso l'header (perno in alto a sinistra):
+   due trasformazioni separate che non si pestano i piedi. */
+.hero-stage{
+  transform-style:preserve-3d;
+  animation:heroEntra 1.5s var(--ease) both;
+  will-change:transform;
 }
-.hero-title em{ font-style:normal; font-weight:300; color:#e8dcc4; }
+@keyframes heroEntra{
+  from{ opacity:0; transform:rotateX(24deg) translateY(30px) scale(.93); }
+  to  { opacity:1; transform:none; }
+}
+
+.hero-logo{
+  width:min(620px, 76vw); height:auto;
+  margin:0 auto clamp(24px,3vw,40px);
+  transform-origin:top left;       /* il volo verso l'header parte da qui */
+  will-change:transform, opacity;
+  backface-visibility:hidden;
+}
+.hero-scuro .hero-logo{ filter:invert(1) brightness(2); }
+
 .hero-sub{
   max-width:46ch; font-size:clamp(16px,1.1vw + 13px,20px); font-weight:300;
-  color:rgba(255,255,255,.82); margin:0 0 40px;
+  color:var(--ink-soft); margin:0 auto clamp(28px,3vw,40px);
+  animation:heroSale 1.2s .25s var(--ease) both;
+  will-change:transform;
 }
-.hero-cta{ display:flex; flex-wrap:wrap; gap:14px; }
+.hero-scuro .hero-sub{ color:rgba(255,255,255,.82); }
+.hero-cta{ animation:heroSale 1.2s .4s var(--ease) both; will-change:transform; }
+@keyframes heroSale{
+  from{ opacity:0; transform:translateY(18px); }
+  to  { opacity:1; transform:none; }
+}
+.hero-cta{ display:flex; flex-wrap:wrap; gap:14px; justify-content:center; }
 
 .hero-scroll{
   position:absolute; left:50%; bottom:34px; transform:translateX(-50%);
-  z-index:1; text-decoration:none; color:rgba(255,255,255,.75);
+  z-index:1; text-decoration:none; color:var(--ink-2);
   font-family:var(--ff-display); font-size:11px; letter-spacing:.28em; text-transform:uppercase;
   display:flex; flex-direction:column; align-items:center; gap:12px;
   transition:color .3s var(--ease);
 }
-.hero-scroll:hover{ color:#fff; }
-.hero-scroll-line{ width:1px; height:46px; background:rgba(255,255,255,.45); position:relative; overflow:hidden; }
+.hero-scroll:hover{ color:var(--ink); }
+.hero-scuro .hero-scroll{ color:rgba(255,255,255,.75); }
+.hero-scuro .hero-scroll:hover{ color:#fff; }
+.hero-scroll-line{ width:1px; height:46px; background:rgba(20,19,15,.28); position:relative; overflow:hidden; }
+.hero-scuro .hero-scroll-line{ background:rgba(255,255,255,.45); }
 .hero-scroll-line::after{
-  content:''; position:absolute; inset:0; background:#fff;
+  content:''; position:absolute; inset:0; background:var(--ink);
   animation:scrollcue 2.2s var(--ease) infinite;
 }
+.hero-scuro .hero-scroll-line::after{ background:#fff; }
 @keyframes scrollcue{ 0%{ transform:translateY(-100%); } 60%,100%{ transform:translateY(100%); } }
 
 /* ==========================================================================
@@ -199,10 +257,15 @@ p{ margin:0 0 1.1em; }
              border-color .35s var(--ease), transform .35s var(--ease);
 }
 .btn:hover{ transform:translateY(-2px); }
-.btn-light{ background:#fff; color:var(--ink); }
-.btn-light:hover{ background:#e8dcc4; }
-.btn-ghost{ border-color:rgba(255,255,255,.45); color:#fff; }
-.btn-ghost:hover{ background:rgba(255,255,255,.12); border-color:#fff; }
+.btn-solid{ background:var(--ink); color:var(--bg); }
+.btn-solid:hover{ background:var(--accent); }
+.btn-outline{ border-color:rgba(20,19,15,.30); color:var(--ink); }
+.btn-outline:hover{ background:var(--ink); border-color:var(--ink); color:var(--bg); }
+
+.hero-scuro .btn-solid{ background:#fff; color:var(--ink); }
+.hero-scuro .btn-solid:hover{ background:#e8dcc4; }
+.hero-scuro .btn-outline{ border-color:rgba(255,255,255,.45); color:#fff; }
+.hero-scuro .btn-outline:hover{ background:rgba(255,255,255,.12); border-color:#fff; color:#fff; }
 .btn-dark{ background:var(--ink); color:var(--bg); border:0; }
 .btn-dark:hover{ background:var(--accent); }
 .btn-wa{ background:var(--wa); color:#fff; }
@@ -325,6 +388,36 @@ p{ margin:0 0 1.1em; }
 .products-note a{ color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line-2); padding-bottom:2px; }
 .products-note a:hover{ border-color:var(--ink); }
 
+/* ---------- Marchi trattati (dentro Materiali) ---------- */
+.partners{
+  margin-top:clamp(36px,4.5vw,60px);
+  padding-top:clamp(28px,3.5vw,44px);
+  border-top:1px solid var(--line);
+  display:flex; flex-direction:column; align-items:center; gap:clamp(18px,2.4vw,30px);
+}
+.partners-label{
+  font-family:var(--ff-display); font-size:11.5px; letter-spacing:.26em; text-transform:uppercase;
+  color:var(--ink-soft); margin:0;
+}
+.partners-logos{
+  list-style:none; margin:0; padding:0;
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+  gap:clamp(28px,5vw,72px);
+}
+.partners-logos img{
+  height:46px; width:auto; display:block;
+  opacity:.78; filter:grayscale(1);
+  transition:opacity .35s var(--ease), filter .35s var(--ease);
+}
+.partners-logos a{ display:block; }
+.partners-logos a:hover img,
+.partners-logos a:focus-visible img{ opacity:1; filter:none; }
+/* Cosentino è il solo marchio senza la riga "by Cosentino" sotto:
+   a parità di altezza risulterebbe sproporzionato rispetto agli altri. */
+/* Cosentino è solo il nome, senza la riga "by Cosentino" sotto: a parità di
+   altezza le sue lettere risulterebbero il doppio delle altre. */
+.partners-logos img.p-cosentino{ height:26px; }
+
 /* ---------- Galleria ---------- */
 .filters{
   display:flex; flex-wrap:wrap; gap:10px; margin-bottom:clamp(24px,3vw,40px);
@@ -365,13 +458,83 @@ p{ margin:0 0 1.1em; }
 .g-item:hover::after, .g-item:focus-visible::after{ opacity:1; }
 .g-item:hover .g-cap, .g-item:focus-visible .g-cap{ opacity:1; transform:none; }
 
+/* ---------- Varianti di intestazione sezione ---------- */
+.section-head--row{
+  display:flex; align-items:flex-end; justify-content:space-between;
+  gap:24px 48px; max-width:none; flex-wrap:wrap;
+}
+.section-head--row > div{ max-width:620px; }
+.section-head--row .section-intro{ margin-bottom:0; }
+.section-head--center{ max-width:640px; margin-inline:auto; text-align:center; }
+.section-head--center .label{ justify-content:center; }
+.section-head--center .label::before{
+  content:''; height:1px; flex:0 0 56px; background:var(--line-2);
+}
+.section-head--center .section-intro{ margin-inline:auto; }
+
+/* ==========================================================================
+   Promozioni
+   ========================================================================== */
+.promos{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+  gap:clamp(18px,2.2vw,30px);
+}
+.promo{
+  display:flex; flex-direction:column;
+  background:var(--bg); border:1px solid var(--line);
+  transition:border-color .4s var(--ease), transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.promo:hover{
+  border-color:var(--line-2); transform:translateY(-4px);
+  box-shadow:0 18px 44px -28px rgba(20,19,15,.42);
+}
+.promo-img{ overflow:hidden; aspect-ratio:4/3; }
+.promo-img img{ width:100%; height:100%; object-fit:cover; transition:transform 1s var(--ease); }
+.promo:hover .promo-img img{ transform:scale(1.05); }
+
+.promo-body{ display:flex; flex-direction:column; flex:1; padding:22px 24px 26px; }
+.promo-nota{
+  align-self:flex-start;
+  font-family:var(--ff-display); font-size:10.5px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--accent); border:1px solid var(--line-2); border-radius:999px;
+  padding:5px 12px; margin-bottom:14px;
+}
+.promo-titolo{ font-size:20px; font-weight:300; line-height:1.25; margin:0 0 10px; }
+.promo-desc{ font-size:14px; color:var(--ink-soft); line-height:1.6; margin:0 0 18px; flex:1; }
+.promo-prezzo{
+  font-family:var(--ff-display); font-size:clamp(22px,2vw,28px); font-weight:300;
+  color:var(--ink); margin:0 0 18px; letter-spacing:-.01em;
+}
+.promo-btn{ align-self:stretch; padding:13px 20px; font-size:12.5px; }
+
+.promos--page{ grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); }
+
+/* ---------- Pagina interna (promozioni.html) ---------- */
+.page-interna{ padding-top:var(--header-h); }
+.page-head{ padding-block:clamp(40px,5vw,72px) clamp(28px,3vw,44px); }
+.page-head h1{
+  font-size:clamp(34px,5vw,64px); font-weight:200; letter-spacing:-.02em;
+  margin:0 0 20px;
+}
+.breadcrumb{
+  font-family:var(--ff-display); font-size:12px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink-soft); margin-bottom:22px;
+}
+.breadcrumb a{ text-decoration:none; }
+.breadcrumb a:hover{ color:var(--ink); border-bottom:1px solid var(--line-2); }
+
 /* ---------- Contatti: info + mappa ---------- */
 .contact{
   display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
   gap:clamp(32px,4vw,64px); align-items:stretch;
 }
+/* mappa disattivata da CONFIG: i recapiti restano da soli, centrati */
+.contact--senza-mappa{ grid-template-columns:minmax(0,760px); justify-content:center; }
+.contact--senza-mappa .contact-list{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+.contact--senza-mappa .contact-info{ align-items:center; }
+.contact--senza-mappa .socials{ justify-content:center; }
 .contact-info{ display:flex; flex-direction:column; }
-.contact-list{ margin:32px 0 0; display:grid; gap:1px; background:var(--line); border:1px solid var(--line); }
+.contact-list{ margin:0; display:grid; gap:1px; background:var(--line); border:1px solid var(--line); width:100%; }
 .contact-list > div{ background:var(--bg); padding:20px 24px; }
 .contact-list dt{
   font-family:var(--ff-display); font-size:11.5px; letter-spacing:.24em; text-transform:uppercase;
@@ -502,53 +665,9 @@ p{ margin:0 0 1.1em; }
 .social-icons svg{ width:19px; height:19px; fill:currentColor; }
 .social-icons svg.ico-outline{ fill:none; stroke:currentColor; stroke-width:1.4; }
 
-/* La copia sopra il footer: niente riga sotto, altrimenti si sommerebbe
-   al bordo superiore del footer e si vedrebbe una doppia linea. */
-.social-band--pre-footer{ border-bottom:0; }
-
-/* ==========================================================================
-   Banda con foto (fra la striscia social e il footer)
-   ========================================================================== */
-.closing-band{
-  position:relative; overflow:hidden;
-  display:flex; align-items:center;
-  min-height:clamp(300px,32vw,440px);
-  color:#fff;
-}
-.closing-media{ position:absolute; inset:0; }
-.closing-media img{ width:100%; height:100%; object-fit:cover; object-position:center; }
-.closing-media::after{
-  content:''; position:absolute; inset:0;
-  background:linear-gradient(90deg,
-    rgba(10,9,7,.82) 0%, rgba(10,9,7,.58) 45%, rgba(10,9,7,.24) 100%);
-}
-
-.closing-inner{ position:relative; z-index:1; padding-block:clamp(44px,5vw,72px); }
-.closing-eyebrow{
-  font-family:var(--ff-display); font-size:12px; letter-spacing:.3em; text-transform:uppercase;
-  margin:0 0 20px; opacity:.8;
-  display:flex; align-items:center; gap:14px;
-}
-.closing-eyebrow::after{ content:''; height:1px; width:52px; background:currentColor; opacity:.6; }
-
-.closing-claim{
-  font-family:var(--ff-display); font-weight:200;
-  font-size:clamp(23px,3.2vw,44px); line-height:1.18; letter-spacing:-.01em;
-  margin:0 0 28px; max-width:24ch;
-}
-.closing-link{
-  display:inline-flex; align-items:center; gap:10px;
-  font-family:var(--ff-display); font-size:12.5px; letter-spacing:.16em; text-transform:uppercase;
-  color:#fff; text-decoration:none;
-  padding-bottom:5px; border-bottom:1px solid rgba(255,255,255,.4);
-  transition:border-color .35s var(--ease);
-}
-.closing-link:hover{ border-color:#fff; }
-.closing-link svg{
-  width:17px; height:17px; fill:none; stroke:currentColor; stroke-width:1.2;
-  transition:transform .35s var(--ease);
-}
-.closing-link:hover svg{ transform:translateX(5px); }
+/* La copia sotto "Chi siamo": sotto parte una sezione con il suo fondo,
+   la riga inferiore non serve. */
+.social-band--sotto-chi-siamo{ border-bottom:0; }
 
 /* ==========================================================================
    Footer — essenziale: recapiti, mappa e social stanno già poco sopra,
@@ -660,6 +779,15 @@ body.no-scroll{ overflow:hidden; }
 /* ==========================================================================
    Responsive
    ========================================================================== */
+/* ---------- Fascia stretta: con il logo grande il menu completo non ci sta.
+   Tolgo la pillola WhatsApp dalla barra (resta il pulsante flottante) e
+   stringo le voci. ---------- */
+@media (min-width:821px) and (max-width:1120px){
+  .nav{ gap:16px; }
+  .nav > a{ font-size:12.5px; letter-spacing:.06em; }
+  .nav-wa{ display:none; }
+}
+
 /* ---------- Tablet largo ---------- */
 @media (max-width:1100px){
   .gallery{ columns:2; }
@@ -714,23 +842,21 @@ body.no-scroll{ overflow:hidden; }
 @media (max-width:760px){
   :root{
     --gut:16px;
-    --header-h:52px;
+    --header-h:60px;          /* barra un po' più alta: ci sta un logo leggibile */
   }
 
   body{ font-size:13.5px; line-height:1.62; }
 
   /* --- Header --- */
-  .brand img{ height:22px; }
-  .site-header.scrolled .brand img{ height:20px; }
-  .site-header.scrolled .header-inner{ height:46px; }
+  .brand img{ height:34px; }
+  .site-header.scrolled .brand img{ height:30px; }
+  .site-header.scrolled .header-inner{ height:54px; }
   .burger{ width:36px; height:36px; margin-right:-8px; }
   .burger span{ width:19px; margin:4.5px auto; }
 
   /* --- Hero: resta a tutto schermo anche su mobile --- */
   .hero-inner{ padding-block:calc(var(--header-h) + 28px) 84px; }
-  .hero-eyebrow{ font-size:9.5px; letter-spacing:.2em; margin-bottom:14px; }
-  .hero-eyebrow::after{ width:30px; }
-  .hero-title{ font-size:clamp(25px,7.4vw,34px); margin-bottom:14px; }
+  .hero-logo{ width:min(420px, 78vw); margin-bottom:20px; }
   .hero-sub{ font-size:13.5px; margin-bottom:22px; max-width:36ch; }
   .hero-cta{ gap:8px; }
   .hero-cta .btn{ flex:1 1 100%; }
@@ -769,17 +895,28 @@ body.no-scroll{ overflow:hidden; }
   .service h3{ font-size:16px; margin-bottom:8px; }
   .service p{ font-size:12.5px; line-height:1.55; }
 
-  /* --- Prodotti --- */
+  /* --- Materiali, Prodotti, Complementi ---
+     Schede compatte: foto, nome e freccia su una riga sola. Tolgo la
+     descrizione invece di rimpicciolirla: a 11px non si leggeva comunque,
+     e senza entrano il doppio delle schede nella schermata. */
   .products{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
-  .product-img{ aspect-ratio:1/1; }
-  .product-body{ padding:11px 11px 13px; }
-  .product-name{ font-size:14px; margin-bottom:4px; }
-  .product-desc{ font-size:11px; line-height:1.45; margin-bottom:10px; }
-  .product-cta{ font-size:9.5px; letter-spacing:.07em; gap:5px; white-space:nowrap; }
-  .product-cta svg{ width:13px; height:13px; }
-  .cta-full{ display:none; }
-  .cta-short{ display:inline; }
+  .product-img{ aspect-ratio:4/3; }
+  .product-body{
+    flex-direction:row; align-items:center; justify-content:space-between;
+    gap:8px; padding:11px 12px 12px;
+  }
+  .product-name{ font-size:14.5px; margin:0; }
+  .product-desc{ display:none; }
+  .product-cta{ font-size:0; gap:0; flex:0 0 auto; }   /* resta solo la freccia */
+  .product-cta svg{ width:16px; height:16px; }
   .products-note{ font-size:12.5px; margin-top:22px; }
+
+  /* --- Marchi trattati --- */
+  .partners{ margin-top:28px; padding-top:22px; gap:16px; }
+  .partners-label{ font-size:9.5px; letter-spacing:.2em; }
+  .partners-logos{ gap:22px 26px; }
+  .partners-logos img{ height:30px; }
+  .partners-logos img.p-cosentino{ height:17px; }
 
   /* --- Galleria --- */
   .filters{ gap:6px; margin-bottom:16px; }
@@ -832,18 +969,25 @@ body.no-scroll{ overflow:hidden; }
   .footer-bottom{ padding:14px var(--gut) 76px; text-align:center; justify-content:center; }
   .footer-bottom p{ font-size:11px; }
 
-  /* --- Banda con foto --- */
-  .closing-band{ min-height:230px; }
-  .closing-media::after{
-    background:linear-gradient(180deg, rgba(10,9,7,.55) 0%, rgba(10,9,7,.78) 100%);
-  }
-  .closing-inner{ padding-block:36px; }
-  .closing-eyebrow{ font-size:9.5px; letter-spacing:.22em; margin-bottom:14px; }
-  .closing-eyebrow::after{ width:32px; }
-  .closing-claim{ font-size:20px; margin-bottom:20px; max-width:26ch; }
-  .closing-claim br{ display:none; }
-  .closing-link{ font-size:10.5px; letter-spacing:.12em; gap:8px; }
-  .closing-link svg{ width:14px; height:14px; }
+  /* --- Promozioni --- */
+  .section-head--row{ flex-direction:column; align-items:stretch; gap:20px; }
+  .promo-all{ align-self:flex-start; }
+  .promos, .promos--page{ grid-template-columns:1fr; gap:14px; }
+  .promo-img{ aspect-ratio:16/10; }
+  .promo-body{ padding:16px 16px 18px; }
+  .promo-nota{ font-size:9.5px; padding:4px 10px; margin-bottom:11px; }
+  .promo-titolo{ font-size:17px; margin-bottom:8px; }
+  .promo-desc{ font-size:12.5px; margin-bottom:14px; }
+  .promo-prezzo{ font-size:21px; margin-bottom:14px; }
+  .promo-btn{ padding:12px 18px; font-size:11.5px; }
+
+  /* --- Pagina interna --- */
+  .page-head{ padding-block:28px 20px; }
+  .page-head h1{ font-size:30px; margin-bottom:14px; }
+  .breadcrumb{ font-size:10px; letter-spacing:.16em; margin-bottom:16px; }
+
+  /* --- Contatti senza mappa --- */
+  .contact--senza-mappa .contact-list{ grid-template-columns:1fr; }
 
   /* --- Banda social --- */
   .social-inner{ padding-block:22px; gap:14px; }
@@ -872,7 +1016,7 @@ body.no-scroll{ overflow:hidden; }
   :root{ --gut:14px; }
 
   body{ font-size:13px; }
-  .hero-title{ font-size:24px; }
+  .hero-logo{ width:min(300px, 76vw); }
   .hero-sub{ font-size:12.5px; }
   .btn{ font-size:11px; padding:11px 18px; }
   .section{ padding-block:38px; }
@@ -880,9 +1024,11 @@ body.no-scroll{ overflow:hidden; }
   .service{ padding:16px 14px; }
   .service h3{ font-size:15px; }
   .products{ gap:8px; }
-  .product-body{ padding:10px 10px 12px; }
-  .product-name{ font-size:13px; }
-  .product-desc{ font-size:10.5px; }
+  .product-body{ padding:10px 10px 11px; }
+  .product-name{ font-size:13.5px; }
+  /* sotto i 400px la freccia ruba lo spazio ai nomi lunghi, che andrebbero
+     a capo: la tolgo, tanto tutta la scheda è cliccabile */
+  .product-cta{ display:none; }
   .filter{ padding:5px 10px; font-size:9px; }
   .gallery{ column-gap:7px; }
   .g-item{ margin-bottom:7px; }
