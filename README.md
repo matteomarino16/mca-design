@@ -124,6 +124,10 @@ continua a vedere il vecchio foglio di stile finché non svuota la cache.
   e i recapiti restano da soli, centrati. Per riattivarla basta scrivere
   l'indirizzo in `CONFIG.mappa`. Essendo un contenuto di Google, in quel caso
   valutate se serve un banner cookie.
+- Header su due righe: marchio centrato sopra, menu centrato sotto. Con sette
+  voci di menu non c'era modo di tenere il logo grande e centrato sulla stessa
+  riga. Su telefono resta una riga sola: hamburger a sinistra, marchio al centro,
+  menu nel pannello a tutto schermo.
 - Hero 3D (`initHero3D` in `script.js`), senza librerie:
   il logo entra inclinato e si raddrizza, segue il mouse con un'inclinazione
   prospettica (testi e bottoni si muovono in controparte: è questo che dà la

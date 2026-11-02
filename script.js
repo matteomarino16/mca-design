@@ -333,7 +333,7 @@ const GALLERIA = [
           <p class="promo-desc">${p.descrizione}</p>
           <p class="promo-prezzo">${p.prezzo}</p>
           <a class="btn btn-wa promo-btn" href="#"
-             data-wa="Salve, vorrei informazioni sulla promozione: ${p.titolo}.">Richiedi questa offerta</a>
+             data-wa="Salve, vorrei informazioni sulla promozione: ${p.titolo}."><span class="lungo">Richiedi questa offerta</span><span class="corto">Richiedi</span></a>
         </div>
       </article>`;
 

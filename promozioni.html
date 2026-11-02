@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=7">
+<link rel="stylesheet" href="style.css?v=11">
 </head>
 <body class="page-interna">
 
@@ -24,10 +24,17 @@
 <!-- ============ HEADER ============ -->
 <header class="site-header scrolled" id="header">
   <div class="shell header-inner">
-    <a href="index.html" class="brand" id="brand" aria-label="MCA design s.r.l. &mdash; vai alla home">
+    <!-- riga 1: solo il marchio, al centro -->
+    <div class="header-top">
+      <button class="burger" id="burger" aria-label="Apri il menu" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span>
+      </button>
+      <a href="index.html" class="brand" id="brand" aria-label="MCA design s.r.l. &mdash; vai alla home">
       <img src="assets/img/logo.png" alt="MCA design s.r.l." width="432" height="162">
-    </a>
+      </a>
+    </div>
 
+    <!-- riga 2: il menu, centrato sotto (su telefono finisce nel pannello) -->
     <nav class="nav" id="nav" aria-label="Navigazione principale">
       <a href="index.html#chi-siamo">Chi siamo</a>
       <a href="index.html#servizi">Servizi</a>
@@ -41,10 +48,6 @@
         WhatsApp
       </a>
     </nav>
-
-    <button class="burger" id="burger" aria-label="Apri il menu" aria-expanded="false" aria-controls="nav">
-      <span></span><span></span>
-    </button>
   </div>
 </header>
 
@@ -113,6 +116,6 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.87 9.87 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.12c-.25.69-1.44 1.32-1.99 1.37-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.1-4.88-4.29-.14-.19-1.17-1.55-1.17-2.96s.74-2.1 1-2.39c.26-.29.57-.36.76-.36l.54.01c.17 0 .41-.07.64.49.24.57.8 1.98.87 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.3.37-.42.5-.14.14-.29.29-.12.57.16.29.73 1.2 1.56 1.94 1.07.95 1.98 1.25 2.26 1.39.28.14.45.12.61-.07.17-.19.71-.83.9-1.11.19-.29.38-.24.64-.14.26.09 1.67.79 1.95.93.29.14.48.21.55.33.07.12.07.69-.18 1.38Z"/></svg>
 </a>
 
-<script src="script.js?v=7"></script>
+<script src="script.js?v=11"></script>
 </body>
 </html>

@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=7">
+<link rel="stylesheet" href="style.css?v=11">
 </head>
 <body class="hero-scuro">
 
@@ -26,10 +26,17 @@
 <!-- ============ HEADER ============ -->
 <header class="site-header" id="header">
   <div class="shell header-inner">
-    <a href="#top" class="brand" id="brand" aria-label="MCA design s.r.l. &mdash; torna all'inizio">
+    <!-- riga 1: solo il marchio, al centro -->
+    <div class="header-top">
+      <button class="burger" id="burger" aria-label="Apri il menu" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span>
+      </button>
+      <a href="#top" class="brand" id="brand" aria-label="MCA design s.r.l. &mdash; torna all'inizio">
       <img src="assets/img/logo.png" alt="MCA design s.r.l." width="432" height="162">
-    </a>
+      </a>
+    </div>
 
+    <!-- riga 2: il menu, centrato sotto (su telefono finisce nel pannello) -->
     <nav class="nav" id="nav" aria-label="Navigazione principale">
       <a href="#chi-siamo">Chi siamo</a>
       <a href="#servizi">Servizi</a>
@@ -43,10 +50,6 @@
         WhatsApp
       </a>
     </nav>
-
-    <button class="burger" id="burger" aria-label="Apri il menu" aria-expanded="false" aria-controls="nav">
-      <span></span><span></span>
-    </button>
   </div>
 </header>
 
@@ -191,7 +194,7 @@
       <header class="section-head">
         <p class="label reveal"><span class="label-num">03</span> Materiali</p>
         <h2 class="reveal">Marmi, graniti<br>e pietre naturali.</h2>
-        <p class="section-intro reveal">Tocca un materiale: si apre WhatsApp con il messaggio gi&agrave; pronto e ti rispondiamo con disponibilit&agrave;, finiture e preventivo.</p>
+        <p class="section-intro reveal">Tocca un materiale per richiedere informazioni: ti rispondiamo con disponibilit&agrave;, finiture e preventivo.</p>
       </header>
 
       <div class="products">
@@ -279,7 +282,7 @@
       <header class="section-head">
         <p class="label reveal"><span class="label-num">04</span> I nostri prodotti</p>
         <h2 class="reveal">Quello che realizziamo<br>con la pietra.</h2>
-        <p class="section-intro reveal">Scale, pavimenti, top e piatti doccia: ogni pezzo &egrave; tagliato e finito su misura. Scegli la categoria e ne parliamo su WhatsApp.</p>
+        <p class="section-intro reveal">Scale, pavimenti, top e piatti doccia: ogni pezzo &egrave; tagliato e finito su misura. Scegli la categoria e ne parliamo.</p>
       </header>
 
       <div class="products">
@@ -422,7 +425,7 @@
         <p class="label reveal"><span class="label-num">08</span> Contattaci</p>
         <h2 class="reveal">Contattaci.</h2>
         <p class="section-intro reveal">
-          Telefono, email o WhatsApp: rispondiamo noi, non un centralino.
+          Rispondiamo noi, non un centralino.
           Dicci materiale, metratura e tempi e ti torniamo con un preventivo.
         </p>
       </header>
@@ -474,7 +477,7 @@
         <form class="contact-form" id="contact-form" novalidate>
           <header class="form-head">
             <h3>Scrivici un messaggio</h3>
-            <p>Compila i campi: il messaggio si apre gi&agrave; scritto su WhatsApp.</p>
+            <p>Compila i campi e ti ricontattiamo noi.</p>
           </header>
 
           <div class="field-row">
@@ -588,6 +591,6 @@
   </figure>
 </div>
 
-<script src="script.js?v=7"></script>
+<script src="script.js?v=11"></script>
 </body>
 </html>

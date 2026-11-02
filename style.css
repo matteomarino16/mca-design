@@ -22,7 +22,7 @@
   --ff-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
   --ease: cubic-bezier(.22,.61,.36,1);
-  --header-h: 84px;
+  --header-h: 132px;
 }
 
 /* ---------- Reset ---------- */
@@ -70,14 +70,21 @@ p{ margin:0 0 1.1em; }
   transition:background .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
   border-bottom:1px solid transparent;
 }
+/* Header su due righe: il marchio al centro sopra, il menu centrato sotto.
+   Con sette voci non c'era modo di tenere il logo grande e centrato
+   sulla stessa riga. */
 .header-inner{
-  display:flex; align-items:center; justify-content:space-between; gap:24px;
-  height:var(--header-h);
-  transition:height .4s var(--ease);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:10px; height:var(--header-h);
+  transition:height .4s var(--ease), gap .4s var(--ease);
+}
+.header-top{
+  position:relative; width:100%;
+  display:flex; align-items:center; justify-content:center;
 }
 .brand{ flex:0 0 auto; }     /* il logo non si lascia schiacciare dal menu */
 .brand img{
-  height:48px; width:auto; max-width:none;
+  height:64px; width:auto; max-width:none;
   transition:filter .4s var(--ease), height .4s var(--ease);
 }
 /* Con la foto nell'hero l'header parte in bianco; senza foto resta scuro. */
@@ -93,10 +100,10 @@ p{ margin:0 0 1.1em; }
   -webkit-backdrop-filter:saturate(180%) blur(14px);
   border-bottom-color:var(--line);
 }
-.site-header.scrolled .header-inner{ height:68px; }
-.site-header.scrolled .brand img{ height:40px; }
+.site-header.scrolled .header-inner{ height:92px; gap:6px; }
+.site-header.scrolled .brand img{ height:44px; }
 
-.nav{ display:flex; align-items:center; gap:clamp(16px,2vw,32px); }
+.nav{ display:flex; align-items:center; justify-content:center; gap:clamp(14px,1.8vw,28px); }
 .nav > a{
   font-family:var(--ff-display);
   font-size:14px; font-weight:400; letter-spacing:.09em; text-transform:uppercase;
@@ -127,9 +134,9 @@ p{ margin:0 0 1.1em; }
 
 /* Burger */
 .burger{
-  display:none; width:44px; height:44px; margin-right:-10px;
+  display:none; width:44px; height:44px;
   background:none; border:0; cursor:pointer; padding:0;
-  position:relative; z-index:2;
+  position:absolute; left:0; top:50%; transform:translateY(-50%); z-index:2;
 }
 .burger span{
   display:block; height:1px; width:24px; margin:6px auto; background:var(--ink);
@@ -506,6 +513,7 @@ p{ margin:0 0 1.1em; }
   color:var(--ink); margin:0 0 18px; letter-spacing:-.01em;
 }
 .promo-btn{ align-self:stretch; padding:13px 20px; font-size:12.5px; }
+.promo-btn .corto{ display:none; }
 
 .promos--page{ grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); }
 
@@ -779,13 +787,10 @@ body.no-scroll{ overflow:hidden; }
 /* ==========================================================================
    Responsive
    ========================================================================== */
-/* ---------- Fascia stretta: con il logo grande il menu completo non ci sta.
-   Tolgo la pillola WhatsApp dalla barra (resta il pulsante flottante) e
-   stringo le voci. ---------- */
+/* ---------- Fascia stretta: stringo solo le voci, il menu ha una riga tutta sua ---------- */
 @media (min-width:821px) and (max-width:1120px){
-  .nav{ gap:16px; }
+  .nav{ gap:14px; }
   .nav > a{ font-size:12.5px; letter-spacing:.06em; }
-  .nav-wa{ display:none; }
 }
 
 /* ---------- Tablet largo ---------- */
@@ -824,6 +829,7 @@ body.no-scroll{ overflow:hidden; }
     transition:opacity .4s var(--ease), transform .4s var(--ease), visibility .4s var(--ease);
   }
   .nav-open .nav{ opacity:1; visibility:visible; transform:none; }
+  .header-inner{ gap:0; }     /* il menu è fuori flusso: resta solo la riga del marchio */
   .brand{ position:relative; z-index:2; }
   .nav-open .brand img{ filter:none; }
   .nav > a{ color:var(--ink) !important; font-size:clamp(18px,5.2vw,24px); letter-spacing:.02em; padding:9px 0; }
@@ -842,16 +848,16 @@ body.no-scroll{ overflow:hidden; }
 @media (max-width:760px){
   :root{
     --gut:16px;
-    --header-h:60px;          /* barra un po' più alta: ci sta un logo leggibile */
+    --header-h:66px;          /* una riga sola: marchio al centro, menu nel pannello */
   }
 
   body{ font-size:13.5px; line-height:1.62; }
 
   /* --- Header --- */
-  .brand img{ height:34px; }
-  .site-header.scrolled .brand img{ height:30px; }
-  .site-header.scrolled .header-inner{ height:54px; }
-  .burger{ width:36px; height:36px; margin-right:-8px; }
+  .brand img{ height:42px; }
+  .site-header.scrolled .brand img{ height:36px; }
+  .site-header.scrolled .header-inner{ height:58px; gap:0; }
+  .burger{ width:38px; height:38px; }
   .burger span{ width:19px; margin:4.5px auto; }
 
   /* --- Hero: resta a tutto schermo anche su mobile --- */
@@ -969,17 +975,26 @@ body.no-scroll{ overflow:hidden; }
   .footer-bottom{ padding:14px var(--gut) 76px; text-align:center; justify-content:center; }
   .footer-bottom p{ font-size:11px; }
 
-  /* --- Promozioni --- */
-  .section-head--row{ flex-direction:column; align-items:stretch; gap:20px; }
-  .promo-all{ align-self:flex-start; }
-  .promos, .promos--page{ grid-template-columns:1fr; gap:14px; }
-  .promo-img{ aspect-ratio:16/10; }
-  .promo-body{ padding:16px 16px 18px; }
-  .promo-nota{ font-size:9.5px; padding:4px 10px; margin-bottom:11px; }
-  .promo-titolo{ font-size:17px; margin-bottom:8px; }
-  .promo-desc{ font-size:12.5px; margin-bottom:14px; }
-  .promo-prezzo{ font-size:21px; margin-bottom:14px; }
-  .promo-btn{ padding:12px 18px; font-size:11.5px; }
+  /* --- Promozioni ---
+     Stessa misura delle schede di Materiali e Prodotti: due colonne compatte.
+     Resta quello che conta in un'offerta (foto, titolo, prezzo, pulsante),
+     via la descrizione lunga come nelle altre schede. */
+  .section-head--row{ flex-direction:column; align-items:stretch; gap:16px; }
+  .promo-all{ align-self:flex-start; padding:12px 20px; font-size:11px; }
+  .promos, .promos--page{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  .promo-img{ aspect-ratio:4/3; }
+  .promo-body{ padding:11px 12px 13px; }
+  .promo-nota{ display:none; }     /* andava a capo e raddoppiava l'altezza della scheda */
+  .promo-titolo{
+    font-size:13px; line-height:1.3; margin-bottom:8px;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+    overflow:hidden;                /* i titoli lunghi non sfondano la scheda */
+  }
+  .promo-desc{ display:none; }
+  .promo-prezzo{ font-size:16px; margin:0 0 10px; }
+  .promo-btn{ padding:11px 10px; font-size:10px; letter-spacing:.1em; }
+  .promo-btn .lungo{ display:none; }    /* su due righe gonfiava la scheda */
+  .promo-btn .corto{ display:inline; }
 
   /* --- Pagina interna --- */
   .page-head{ padding-block:28px 20px; }
@@ -1023,7 +1038,7 @@ body.no-scroll{ overflow:hidden; }
   .section-head h2, .about-text h2{ font-size:20px; }
   .service{ padding:16px 14px; }
   .service h3{ font-size:15px; }
-  .products{ gap:8px; }
+  .products, .promos, .promos--page{ gap:8px; }
   .product-body{ padding:10px 10px 11px; }
   .product-name{ font-size:13.5px; }
   /* sotto i 400px la freccia ruba lo spazio ai nomi lunghi, che andrebbero
