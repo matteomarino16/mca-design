@@ -1,0 +1,8 @@
+# MCA design s.r.l.
+User-agent: *
+Allow: /
+
+# L'archivio originale delle foto non serve nei risultati di ricerca
+Disallow: /galleria/
+
+Sitemap: https://www.mca-design.it/sitemap.xml

@@ -9,9 +9,14 @@ GitHub Pages, Aruba, spazio FTP…).
 ```
 index.html       la home (struttura e testi)
 promozioni.html  pagina esterna con tutte le promozioni
+privacy.html     informativa privacy
+cookie.html      cookie policy
+robots.txt       istruzioni per i motori di ricerca
+sitemap.xml      elenco delle pagine per i motori di ricerca
 style.css        tutti gli stili, desktop e mobile
 script.js        comportamenti + CONFIG + PROMOZIONI + GALLERIA
 assets/img/      immagini ottimizzate per il web (generate da galleria/)
+assets/fonts/    i due caratteri, serviti dal nostro sito
 galleria/        archivio originale delle foto (non usato dal sito)
 logo.PNG         logo originale
 ```
@@ -27,11 +32,12 @@ Tutto in cima a `script.js`, nel blocco `CONFIG`:
 
 ```js
 const CONFIG = {
-  whatsapp: '393331234567',   // internazionale, senza + né spazi
-  telefono:  '+39 333 123 4567',
-  email:     'info@mcadesign.it',
-  indirizzo: 'Via xxxx',      // mostrato come "Deposito materiali"
-  piva:      'P.IVA 00000000000',
+  whatsapp: '393495519357',   // internazionale, senza + né spazi
+  telefono:  '+39 349 551 9357',
+  email:     'info@mca-design.it',
+  indirizzo: 'Via Curcio 17, 70011 Alberobello (BA)',
+  orari:     'Lun – Ven  8:00 – 13:00 / 14:00 – 17:00',
+  piva:      'P.IVA IT03223160734',
   heroImage: '',              // '' = hero chiaro col solo logo
   mappa:     '',              // '' = mappa Google nascosta
   instagram: 'https://www.instagram.com/',  // ⚠️ segnaposto
@@ -46,7 +52,8 @@ dalla pagina, così non resta nessun pulsante che non porta da nessuna parte.
 
 ### 2. Foto grande dell'hero
 
-L'hero è scuro: sul fondo c'è `assets/img/hero-stone.jpg` (marmo Forest Green),
+L'hero è scuro: sul fondo c'è `assets/img/hero-salone.jpg` (il salone con le volte
+in pietra del Relais Hist, scurito per far leggere il logo bianco),
 con logo, menu e testi in bianco. Quando avete la foto: mettetela in
 `assets/img/` e indicatela in `CONFIG.heroImage` (es. `'assets/img/hero.jpg'`).
 La foto copre il marmo e il resto resta com'è, già impostato per il chiaro su scuro.
@@ -56,7 +63,19 @@ La foto copre il marmo e il resto resta com'è, già impostato per il chiaro su 
 L'array `PROMOZIONI` in `script.js` alimenta sia la sezione in home (le prime 3)
 sia la pagina `promozioni.html` (tutte). Ogni voce ha immagine, titolo,
 descrizione, prezzo e una nota facoltativa.
-**Prezzi e testi attuali sono segnaposto.**
+
+**Al momento l'array è vuoto**, quindi:
+- la sezione Promozioni **resta in pagina** con titolo e testo introduttivo, ma
+  al posto delle schede compare "Al momento non ci sono promozioni attive";
+- sparisce solo il pulsante "Vedi tutte le promozioni", che porterebbe a una
+  pagina con lo stesso messaggio;
+- `promozioni.html` resta online e mostra lo stesso avviso;
+- i numeri delle sezioni si rinumerano comunque da soli (01, 02, 03…), quindi
+  se un domani si toglie una sezione la sequenza non salta.
+
+Per riattivarla basta rimettere una o più voci dentro `PROMOZIONI`: sotto
+l'array ci sono le tre promozioni di prova lasciate come esempio commentato.
+Le immagini `assets/img/promo-*.jpg` sono ancora al loro posto.
 
 ### 4. Foto della galleria
 
@@ -94,6 +113,59 @@ bianco e nero e tornano a colori al passaggio del mouse.
 Sono direttamente in `index.html`, dentro le sezioni commentate
 (`CHI SIAMO`, `SERVIZI`, `PRODOTTI`, `GALLERIA`, `CONTATTI`, `FOOTER`).
 
+## SEO — cosa completare prima di pubblicare
+
+Il sito è già impostato per i motori di ricerca, ma **i dati dell'azienda sono
+segnaposto**. Finché non li sostituite, Google indicizzerà informazioni false.
+
+**Già inseriti:** dominio, telefono, WhatsApp, email, indirizzo del deposito,
+provincia, regione, zone servite, orari di apertura e P.IVA.
+
+**1. Coordinate esatte del deposito.** Ora ci sono quelle del centro di
+Alberobello (40.784124, 17.237703), perché Via Curcio non risulta negli archivi
+cartografici pubblici. Per la ricerca "vicino a me" conviene il punto preciso:
+aprite Google Maps sul deposito, clic destro sul punto, copiate i due numeri e
+sostituiteli nei meta `geo.position` / `ICBM` e nel campo `geo` dei dati
+strutturati di `index.html`.
+
+**2. Profili social.** In `index.html`, nel blocco *DATI AZIENDA*, i campi
+`INSTAGRAM_DA_COMPLETARE` e `FACEBOOK_DA_COMPLETARE`, più gli stessi indirizzi
+nel `CONFIG` di `script.js`.
+
+**4. Profilo Google Business.** Questo non dipende dal sito: per comparire nelle
+ricerche locali e nelle mappe serve un profilo su *Google Business Profile* con
+nome, indirizzo e telefono **identici** a quelli del sito. È il fattore che pesa
+di più per una ricerca tipo «marmista vicino a me».
+
+**5. Dopo la pubblicazione.** Registrare il sito su Google Search Console e
+inviare `sitemap.xml`.
+
+## Domande frequenti
+
+Stanno in `index.html`, in fondo alla sezione Contatti (blocco `.faq`), fatte con
+`<details>`/`<summary>`: si aprono senza JavaScript e il testo resta sempre nel
+codice, quindi i motori di ricerca lo leggono anche a risposta chiusa.
+
+Le stesse domande sono ripetute nei dati strutturati `FAQPage` in fondo
+all'`<head>`: **se modificate una domanda o una risposta, aggiornate entrambi i
+punti**, altrimenti Google mostrerebbe un testo diverso da quello della pagina.
+
+Sono cinque e **non contengono segnaposto**: si possono pubblicare così.
+
+## Pagine legali
+
+`privacy.html` e `cookie.html` sono collegate in fondo a ogni pagina.
+
+Il sito **non usa cookie** e non carica nulla da server esterni (i caratteri sono
+ospitati in `assets/fonts/`, non presi da Google), quindi **non serve il banner
+dei cookie** e la cookie policy dice semplicemente questo.
+
+⚠️ I testi sono una base solida ma **vanno fatti controllare da chi segue gli
+adempimenti privacy dell'azienda** prima di pubblicare, e completati con i dati
+reali del titolare del trattamento. Se in futuro aggiungete statistiche di visita,
+una mappa incorporata o un modulo che invia dati a un server, **entrambe le pagine
+vanno aggiornate** e con ogni probabilità servirà un banner di consenso.
+
 ## Anteprima in locale
 
 ```bash
@@ -111,10 +183,14 @@ In `index.html` e `promozioni.html` i collegamenti sono scritti così:
 <script src="script.js?v=2"></script>
 ```
 
-Quel `?v=2` serve a non far vedere ai visitatori una versione vecchia del sito.
+Quel `?v=…` serve a non far vedere ai visitatori una versione vecchia del sito.
 **Ogni volta che modificate `style.css` o `script.js`, alzate il numero**
-(`?v=3`, `?v=4`…) in entrambi i file HTML. Senza, chi ha già visitato il sito
-continua a vedere il vecchio foglio di stile finché non svuota la cache.
+in entrambi i file HTML. Senza, chi ha già visitato il sito continua a vedere
+il vecchio foglio di stile finché non svuota la cache.
+
+Lo stesso vale per le **immagini sostituite mantenendo lo stesso nome file**:
+l'hero è scritto `hero-salone.jpg?v=2` proprio per questo. Se rigenerate quel
+file, alzate anche lì il numero (oppure cambiate nome all'immagine).
 
 ## Note
 
@@ -124,10 +200,12 @@ continua a vedere il vecchio foglio di stile finché non svuota la cache.
   e i recapiti restano da soli, centrati. Per riattivarla basta scrivere
   l'indirizzo in `CONFIG.mappa`. Essendo un contenuto di Google, in quel caso
   valutate se serve un banner cookie.
-- Header su due righe: marchio centrato sopra, menu centrato sotto. Con sette
-  voci di menu non c'era modo di tenere il logo grande e centrato sulla stessa
-  riga. Su telefono resta una riga sola: hamburger a sinistra, marchio al centro,
-  menu nel pannello a tutto schermo.
+- Header su una riga: marchio a sinistra, menu a destra. Su telefono il marchio
+  va al centro, con l'hamburger sovrapposto a sinistra e il menu nel pannello a
+  tutto schermo. Fra 821 e 1120 px il logo scende a 46 px, altrimenti le sette
+  voci non entrerebbero accanto a un logo da 64.
+- Nell'header non c'è nessun pulsante WhatsApp: resta il tondo flottante in
+  basso a destra e i pulsanti nella sezione Contatti.
 - Hero 3D (`initHero3D` in `script.js`), senza librerie:
   il logo entra inclinato e si raddrizza, segue il mouse con un'inclinazione
   prospettica (testi e bottoni si muovono in controparte: è questo che dà la

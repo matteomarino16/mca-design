@@ -8,14 +8,15 @@
 
 const CONFIG = {
   // Numero WhatsApp in formato internazionale, SENZA "+", spazi o trattini.
-  // Esempio per un numero italiano 333 1234567  ->  '393331234567'
-  whatsapp: '393331234567',
+  // Esempio: il numero 349 5519357 si scrive '393495519357'
+  whatsapp: '393495519357',
 
   // Recapiti mostrati nella sezione Contatti e nel footer
-  telefono:  '+39 333 123 4567',
-  email:     'info@mcadesign.it',
-  indirizzo: 'Via xxxx',          // mostrato come "Deposito materiali"
-  piva:      'P.IVA 00000000000',
+  telefono:  '+39 349 551 9357',
+  email:     'info@mca-design.it',
+  indirizzo: 'Via Curcio 17, 70011 Alberobello (BA)',   // mostrato come "Deposito materiali"
+  orari:     'Lun – Ven  8:00 – 13:00 / 14:00 – 17:00',
+  piva:      'P.IVA IT03223160734',
 
   // Foto grande dell'hero. Lascia '' e l'hero resta chiaro, con il solo logo.
   // Appena avete la foto: mettetela in assets/img/ e scrivete qui il percorso,
@@ -42,32 +43,35 @@ const CONFIG = {
    ⚠️ Prezzi e testi sono SEGNAPOSTO: da sostituire con quelli veri.
    Le immagini vanno messe in assets/img/.
    ========================================================================== */
-const PROMOZIONI = [
-  {
-    img: 'promo-1.jpg',
-    alt: 'Pavimento in pietra di Trani patinata',
-    titolo: 'Trani patinato — lotto in pronta consegna',
-    descrizione: 'Lastre 60×30×2 cm, finitura patinata anticata. Ideale per pavimenti interni e sale di rappresentanza.',
-    prezzo: '€ 00,00 / m²',
-    nota: 'Fino a esaurimento scorte'
-  },
-  {
-    img: 'promo-2.jpg',
-    alt: 'Lastra di travertino classico',
-    titolo: 'Travertino classico — fornitura e posa',
-    descrizione: 'Pacchetto fornitura + posa per superfici oltre i 40 m², con sopralluogo e rilievo inclusi.',
-    prezzo: '€ 00,00 / m²',
-    nota: 'Valido fino al 00/00/0000'
-  },
-  {
-    img: 'promo-3.jpg',
-    alt: 'Bagno rivestito in pietra patinata',
-    titolo: 'Top bagno + piatto doccia su misura',
-    descrizione: 'Top con lavabo incassato e piatto doccia filo pavimento, stesso materiale e stessa finitura.',
-    prezzo: '€ 000,00',
-    nota: 'Prezzo a partire da'
-  }
-];
+const PROMOZIONI = [];   // ← vuoto: la sezione Promozioni sparisce dal sito
+
+// Per riattivarla, rimetti una o più voci dentro le parentesi quadre qui sopra.
+// Esempio (sono le tre promozioni di prova, con prezzi segnaposto):
+//     {
+//       img: 'promo-1.jpg',
+//       alt: 'Pavimento in pietra di Trani patinata',
+//       titolo: 'Trani patinato — lotto in pronta consegna',
+//       descrizione: 'Lastre 60×30×2 cm, finitura patinata anticata. Ideale per pavimenti interni e sale di rappresentanza.',
+//       prezzo: '€ 00,00 / m²',
+//       nota: 'Fino a esaurimento scorte'
+//     },
+//     {
+//       img: 'promo-2.jpg',
+//       alt: 'Lastra di travertino classico',
+//       titolo: 'Travertino classico — fornitura e posa',
+//       descrizione: 'Pacchetto fornitura + posa per superfici oltre i 40 m², con sopralluogo e rilievo inclusi.',
+//       prezzo: '€ 00,00 / m²',
+//       nota: 'Valido fino al 00/00/0000'
+//     },
+//     {
+//       img: 'promo-3.jpg',
+//       alt: 'Bagno rivestito in pietra patinata',
+//       titolo: 'Top bagno + piatto doccia su misura',
+//       descrizione: 'Top con lavabo incassato e piatto doccia filo pavimento, stesso materiale e stessa finitura.',
+//       prezzo: '€ 000,00',
+//       nota: 'Prezzo a partire da'
+//     }
+
 
 /* ==========================================================================
    Galleria — per aggiungere o togliere foto basta modificare questa lista.
@@ -115,6 +119,7 @@ const GALLERIA = [
     set('mail',      el => el.textContent = CONFIG.email);
     set('address',   el => el.textContent = CONFIG.indirizzo);
     set('piva',      el => el.textContent = CONFIG.piva);
+    set('hours',     el => el.textContent = CONFIG.orari);
     set('tel-link',  el => el.href = 'tel:' + CONFIG.telefono.replace(/[^\d+]/g, ''));
     set('mail-link', el => el.href = 'mailto:' + CONFIG.email);
     set('dev-link',  el => el.href = CONFIG.devInstagram);
@@ -337,6 +342,36 @@ const GALLERIA = [
         </div>
       </article>`;
 
+    // Nessuna offerta attiva: via la sezione dalla home e i link che ci portano,
+    // così non resta un titolo senza contenuto né un collegamento a vuoto.
+    // Nessuna offerta attiva: la sezione resta, al posto delle schede va un
+    // avviso. Sparisce solo il pulsante "Vedi tutte", che porterebbe a una
+    // pagina con lo stesso messaggio.
+    if (!PROMOZIONI.length) {
+      const avviso =
+        '<p class="promos-vuote">Al momento non ci sono promozioni attive. ' +
+        '<a href="#" data-wa="Salve, vorrei sapere se avete promozioni attive.">Scrivici</a> ' +
+        'per sapere cosa abbiamo disponibile.</p>';
+
+      const home = $('#promos-home');
+      if (home) {
+        home.outerHTML = avviso;
+        $('.promo-all')?.remove();
+      }
+
+      const pagina = $('#promos-page');
+      if (pagina) {
+        pagina.closest('.shell')?.querySelector('.products-note')?.remove();  // niente doppioni
+        pagina.outerHTML = avviso;
+      }
+
+      $$('[data-wa]').forEach(el => {
+        el.href = waLink(el.dataset.wa);
+        el.target = '_blank'; el.rel = 'noopener noreferrer';
+      });
+      return;
+    }
+
     const home = $('#promos-home');
     if (home) home.innerHTML = PROMOZIONI.slice(0, 3).map(scheda).join('');
 
@@ -348,6 +383,15 @@ const GALLERIA = [
       el.href = waLink(el.dataset.wa);
       el.target = '_blank';
       el.rel = 'noopener noreferrer';
+    });
+  }
+
+  /* ---------- 6b. Numeri delle sezioni ----------
+     Rinumero dal DOM: se una sezione viene tolta (es. Promozioni) la
+     sequenza resta 01, 02, 03… senza buchi. */
+  function numeraSezioni() {
+    $$('.label-num').forEach((el, i) => {
+      el.textContent = String(i + 1).padStart(2, '0');
     });
   }
 
@@ -563,6 +607,7 @@ const GALLERIA = [
   initHeroFoto();
   duplicaBandaSocial();
   initPromozioni();
+  numeraSezioni();
   initMap();
   initHero3D();
   initHeader();
