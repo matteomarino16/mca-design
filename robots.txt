@@ -1,8 +1,30 @@
-# MCA design s.r.l.
+# MCA design s.r.l. — https://www.mca-design.it
+
+# ---- Motori di ricerca ----
 User-agent: *
 Allow: /
+Disallow: /galleria/          # archivio originale delle foto, non serve nei risultati
 
-# L'archivio originale delle foto non serve nei risultati di ricerca
-Disallow: /galleria/
+# ---- Assistenti AI ----
+# Consentiti di proposito: è così che ChatGPT, Claude, Perplexity e Gemini
+# possono citare l'azienda quando qualcuno chiede di marmisti in zona.
+# Per vietarne uno, cambiare "Allow: /" in "Disallow: /" sotto il suo nome.
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
 
 Sitemap: https://www.mca-design.it/sitemap.xml

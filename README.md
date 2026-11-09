@@ -11,8 +11,9 @@ index.html       la home (struttura e testi)
 promozioni.html  pagina esterna con tutte le promozioni
 privacy.html     informativa privacy
 cookie.html      cookie policy
-robots.txt       istruzioni per i motori di ricerca
-sitemap.xml      elenco delle pagine per i motori di ricerca
+robots.txt       istruzioni per i motori di ricerca e per gli assistenti AI
+sitemap.xml      elenco di pagine e immagini per i motori di ricerca
+llms.txt         scheda sintetica dell'azienda, leggibile dagli assistenti AI
 style.css        tutti gli stili, desktop e mobile
 script.js        comportamenti + CONFIG + PROMOZIONI + GALLERIA
 assets/img/      immagini ottimizzate per il web (generate da galleria/)
@@ -144,8 +145,33 @@ ricerche locali e nelle mappe serve un profilo su *Google Business Profile* con
 nome, indirizzo e telefono **identici** a quelli del sito. È il fattore che pesa
 di più per una ricerca tipo «marmista vicino a me».
 
-**5. Dopo la pubblicazione.** Registrare il sito su Google Search Console e
+**3. Dopo la pubblicazione.** Registrare il sito su Google Search Console e
 inviare `sitemap.xml`.
+
+## Anteprima dei link
+
+Condividendo il sito su WhatsApp, Facebook, LinkedIn o X compare
+`assets/img/social-preview.jpg`: la foto dell'hero ritagliata a 1200×630 con il
+logo sopra.
+
+Se cambiate la foto dell'hero, va rigenerata anche questa (stesso ritaglio) e va
+alzato il contatore `?v=` nei meta `og:image` e `twitter:image` di `index.html` e
+`promozioni.html`. **WhatsApp e Facebook tengono in cache l'anteprima a lungo**:
+senza contatore continuerebbero a mostrare quella vecchia per settimane.
+
+## Assistenti AI (GEO)
+
+Tre cose fanno sì che ChatGPT, Claude, Perplexity e Gemini possano citare
+l'azienda correttamente:
+
+- `robots.txt` **consente esplicitamente** i loro crawler (GPTBot, OAI-SearchBot,
+  ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended). Per vietarne uno,
+  cambiate `Allow: /` in `Disallow: /` sotto il suo nome.
+- `llms.txt` è una scheda sintetica in testo semplice con recapiti, prodotti,
+  materiali e servizi: **va tenuta allineata al `CONFIG`** quando cambiano i dati.
+- I dati strutturati `LocalBusiness` e `FAQPage` nell'`<head>` di `index.html`
+  sono la fonte che gli assistenti leggono per rispondere a domande come
+  «chi lavora il marmo ad Alberobello».
 
 ## Domande frequenti
 
