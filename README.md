@@ -52,11 +52,18 @@ dalla pagina, così non resta nessun pulsante che non porta da nessuna parte.
 
 ### 2. Foto grande dell'hero
 
-L'hero è scuro: sul fondo c'è `assets/img/hero-salone.jpg` (il salone con le volte
-in pietra del Relais Hist, scurito per far leggere il logo bianco),
-con logo, menu e testi in bianco. Quando avete la foto: mettetela in
-`assets/img/` e indicatela in `CONFIG.heroImage` (es. `'assets/img/hero.jpg'`).
-La foto copre il marmo e il resto resta com'è, già impostato per il chiaro su scuro.
+L'hero è scuro: sul fondo c'è `assets/img/hero-cucina.jpg` (cucina con isola e
+rivestimento in marmo), con logo, menu e testi in bianco.
+
+Per cambiarla: sostituite il file oppure indicate un altro percorso nell'`<img>`
+dentro `.hero-texture` in `index.html`. La foto va **scurita prima**, nel file:
+il sito non ci mette sopra nessun velo, quindi se è chiara il logo bianco non si
+legge. Riferimento: nelle zone dove cadono logo e testi la luminosità media deve
+stare intorno a 60–70 su 255.
+
+⚠️ Se sostituite il file **mantenendo lo stesso nome**, aggiungete `?v=2` (poi
+`?v=3`…) al percorso nell'`<img>`, altrimenti i visitatori continuano a vedere
+quella vecchia dalla cache.
 
 ### 3. Promozioni
 
