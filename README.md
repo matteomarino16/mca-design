@@ -239,13 +239,13 @@ file, alzate anche lì il numero (oppure cambiate nome all'immagine).
   voci non entrerebbero accanto a un logo da 64.
 - Nell'header non c'è nessun pulsante WhatsApp: resta il tondo flottante in
   basso a destra e i pulsanti nella sezione Contatti.
-- Hero 3D (`initHero3D` in `script.js`), senza librerie:
-  il logo entra inclinato e si raddrizza, segue il mouse con un'inclinazione
-  prospettica (testi e bottoni si muovono in controparte: è questo che dà la
-  profondità) e, scorrendo, vola fino a sovrapporsi al logo della barra.
-  L'inclinazione si spegne nel primo terzo del volo, così l'atterraggio è piatto
-  e combacia al pixel. Niente inclinazione su touch; con `prefers-reduced-motion`
-  resta solo lo spostamento verso l'header.
+- Hero statico: foto, testi e bottoni **non si muovono col mouse**. L'unica
+  animazione continua è il logo che, scorrendo, vola fino a sovrapporsi a quello
+  della barra (`initLogoVolante` in `script.js`, senza librerie): a ogni frame
+  calcola quanta strada manca e la percorre in proporzione allo scorrimento,
+  atterrando al pixel. Restano due animazioni d'ingresso al caricamento (il logo
+  che si raddrizza, testi e bottoni che salgono), disattivate da
+  `prefers-reduced-motion`.
 - Le immagini in `assets/img/` sono state rigenerate da `galleria/` con
   ridimensionamento e compressione (≈4,7 MB in totale invece di ~500 MB).
 - Layout responsive con tre livelli: desktop, tablet (≤900 px) e mobile

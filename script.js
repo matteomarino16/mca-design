@@ -157,36 +157,24 @@ const GALLERIA = [
     document.body.classList.add('ha-foto');   // la foto copre il fondo in marmo
   }
 
-  /* ---------- 3. Hero 3D: il logo si inclina col mouse e vola nell'header ----------
-     Due trasformazioni separate per non interferire fra loro:
-       · il PALCO (.hero-stage) porta l'inclinazione 3d, con perno al centro;
-       · il LOGO porta il volo verso l'header, con perno in alto a sinistra.
-     L'inclinazione si spegne man mano che il logo arriva in barra, così
-     all'atterraggio la trasformazione è di nuovo piatta e combacia al pixel. */
-  function initHero3D() {
+  /* ---------- 3. Il logo dell'hero vola nell'header ----------
+     Niente movimenti col mouse: nell'hero foto, testi e bottoni restano fermi.
+     L'unica cosa che si muove è il logo, e solo mentre si scorre la pagina:
+     a ogni frame si calcola quanta strada manca fra la posizione nell'hero e
+     quella nella barra, e la si percorre in proporzione allo scorrimento. */
+  function initLogoVolante() {
     const hero   = $('#hero');
-    const stage  = $('#hero-stage');
     const logo   = $('#hero-logo');
     const brand  = $('#brand');
     const header = $('#header');
-    if (!hero || !stage || !logo || !brand || !header) return;
+    if (!hero || !logo || !brand || !header) return;
 
     const brandImg = brand.querySelector('img');
-    const sub = $('#hero-sub');
-    const cta = $('#hero-cta');
-    const texImg = $('#hero-texture img');
+    let partenza = null, arrivo = null, corsa = 1, inCoda = false;
 
-    const fermo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const puntatoreFine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-    let partenza = null, arrivo = null, corsa = 1;
-    let mira = { x: 0, y: 0 };      // dove vuole andare l'inclinazione
-    let ora  = { x: 0, y: 0 };      // dov'è adesso (insegue "mira")
-    let inCoda = false;
-
-    // Posizione del logo come se non ci fosse nessuna trasformazione addosso:
-    // la catena degli offset ignora transform e animazioni, quindi posso misurare
-    // anche mentre l'ingresso 3d sta ancora girando.
+    // Posizione del logo come se non avesse nessuna trasformazione addosso:
+    // la catena degli offset ignora transform e animazioni, quindi la misura
+    // è valida anche mentre l'animazione d'ingresso sta ancora girando.
     function posizioneAFermo(el) {
       let x = 0, y = 0, n = el;
       while (n) { x += n.offsetLeft; y += n.offsetTop; n = n.offsetParent; }
@@ -222,28 +210,6 @@ const GALLERIA = [
       const sc = 1 + (arrivo.h / partenza.h - 1) * p;
       logo.style.transform = `translate(${dx}px, ${dy}px) scale(${sc})`;
 
-      // l'inclinazione svanisce entro il primo terzo del viaggio
-      const quota = Math.max(1 - p * 3, 0);
-      if (!fermo) {
-        const rx = (-ora.y * 9) * quota;
-        const ry = ( ora.x * 11) * quota;
-        const tz = (Math.abs(ora.x) + Math.abs(ora.y)) * 14 * quota;
-        stage.style.transform = quota > 0.001
-          ? `rotateX(${rx}deg) rotateY(${ry}deg) translateZ(${tz}px)`
-          : 'none';
-
-        // i testi scorrono meno del logo: è quello che dà la sensazione di profondità
-        const px = (-ora.x * 12) * quota, py = (-ora.y * 8) * quota;
-        if (sub) sub.style.translate = `${px}px ${py}px`;
-        if (cta) cta.style.translate = `${px * 0.6}px ${py * 0.6}px`;
-
-        // la pietra sul fondo si muove pochissimo e al contrario: è lo strato più lontano
-        if (texImg) {
-          texImg.style.transform =
-            `scale(1.06) translate(${(-ora.x * 16) * quota}px, ${(-ora.y * 11) * quota}px)`;
-        }
-      }
-
       // scambio alla fine del viaggio, così non si vedono due loghi insieme
       const scambio = clamp((p - 0.84) / 0.16, 0, 1);
       logo.style.opacity  = String(1 - scambio);
@@ -251,40 +217,14 @@ const GALLERIA = [
       brand.style.pointerEvents = scambio > 0.5 ? 'auto' : 'none';
     }
 
-    function chiediFrame() {
+    misura();
+    window.addEventListener('scroll', () => {
       if (inCoda) return;
       inCoda = true;
       requestAnimationFrame(() => { inCoda = false; disegna(); });
-    }
-
-    // inseguimento morbido del puntatore: senza, l'inclinazione sarebbe a scatti
-    function insegui() {
-      ora.x += (mira.x - ora.x) * 0.08;
-      ora.y += (mira.y - ora.y) * 0.08;
-      disegna();
-      if (Math.abs(mira.x - ora.x) > 0.001 || Math.abs(mira.y - ora.y) > 0.001) {
-        requestAnimationFrame(insegui);
-      }
-    }
-
-    misura();
-
-    window.addEventListener('scroll', chiediFrame, { passive: true });
+    }, { passive: true });
     window.addEventListener('resize', misura);
     window.addEventListener('load', misura);
-
-    if (!fermo && puntatoreFine) {
-      hero.addEventListener('pointermove', (e) => {
-        const r = hero.getBoundingClientRect();
-        mira.x = clamp((e.clientX - r.left) / r.width  * 2 - 1, -1, 1);
-        mira.y = clamp((e.clientY - r.top)  / r.height * 2 - 1, -1, 1);
-        requestAnimationFrame(insegui);
-      });
-      hero.addEventListener('pointerleave', () => {
-        mira.x = 0; mira.y = 0;
-        requestAnimationFrame(insegui);
-      });
-    }
   }
 
   /* ---------- 4. Mappa Google (disattivabile da CONFIG) ---------- */
@@ -609,7 +549,7 @@ const GALLERIA = [
   initPromozioni();
   numeraSezioni();
   initMap();
-  initHero3D();
+  initLogoVolante();
   initHeader();
   initBurger();
   initReveal();
